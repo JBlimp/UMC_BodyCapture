@@ -7,9 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1C403ED42B62101D00D11507 /* ThemeColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C403ED32B62101D00D11507 /* ThemeColor.swift */; };
+		1C403ED82B62223B00D11507 /* MainTabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C403ED72B62223B00D11507 /* MainTabController.swift */; };
+		1C403EDB2B622CCC00D11507 /* KakaoSDK in Frameworks */ = {isa = PBXBuildFile; productRef = 1C403EDA2B622CCC00D11507 /* KakaoSDK */; };
+		1C403EDD2B622CCC00D11507 /* KakaoSDKAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 1C403EDC2B622CCC00D11507 /* KakaoSDKAuth */; };
+		1C403EDF2B622CCC00D11507 /* KakaoSDKCommon in Frameworks */ = {isa = PBXBuildFile; productRef = 1C403EDE2B622CCC00D11507 /* KakaoSDKCommon */; };
+		1C403EE12B622CCC00D11507 /* KakaoSDKUser in Frameworks */ = {isa = PBXBuildFile; productRef = 1C403EE02B622CCC00D11507 /* KakaoSDKUser */; };
 		3F5C65622B60B09E006E1D99 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5C65612B60B09E006E1D99 /* AppDelegate.swift */; };
 		3F5C65642B60B09E006E1D99 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5C65632B60B09E006E1D99 /* SceneDelegate.swift */; };
-		3F5C65662B60B09E006E1D99 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5C65652B60B09E006E1D99 /* ViewController.swift */; };
+		3F5C65662B60B09E006E1D99 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5C65652B60B09E006E1D99 /* LoginViewController.swift */; };
 		3F5C65692B60B09E006E1D99 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F5C65672B60B09E006E1D99 /* Main.storyboard */; };
 		3F5C656B2B60B0A0006E1D99 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F5C656A2B60B0A0006E1D99 /* Assets.xcassets */; };
 		3F5C656E2B60B0A0006E1D99 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F5C656C2B60B0A0006E1D99 /* LaunchScreen.storyboard */; };
@@ -36,10 +42,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1C403ED32B62101D00D11507 /* ThemeColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeColor.swift; sourceTree = "<group>"; };
+		1C403ED72B62223B00D11507 /* MainTabController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabController.swift; sourceTree = "<group>"; };
 		3F5C655E2B60B09E006E1D99 /* BodyCapture.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BodyCapture.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F5C65612B60B09E006E1D99 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3F5C65632B60B09E006E1D99 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		3F5C65652B60B09E006E1D99 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		3F5C65652B60B09E006E1D99 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		3F5C65682B60B09E006E1D99 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		3F5C656A2B60B0A0006E1D99 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3F5C656D2B60B0A0006E1D99 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -56,6 +64,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1C403EE12B622CCC00D11507 /* KakaoSDKUser in Frameworks */,
+				1C403EDB2B622CCC00D11507 /* KakaoSDK in Frameworks */,
+				1C403EDF2B622CCC00D11507 /* KakaoSDKCommon in Frameworks */,
+				1C403EDD2B622CCC00D11507 /* KakaoSDKAuth in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -76,6 +88,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1C403ED02B62050D00D11507 /* PresentationLayer */ = {
+			isa = PBXGroup;
+			children = (
+				3F5C65652B60B09E006E1D99 /* LoginViewController.swift */,
+				1C403ED72B62223B00D11507 /* MainTabController.swift */,
+			);
+			path = PresentationLayer;
+			sourceTree = "<group>";
+		};
 		3F5C65552B60B09E006E1D99 = {
 			isa = PBXGroup;
 			children = (
@@ -99,13 +120,14 @@
 		3F5C65602B60B09E006E1D99 /* BodyCapture */ = {
 			isa = PBXGroup;
 			children = (
+				1C403ED02B62050D00D11507 /* PresentationLayer */,
 				3F5C65612B60B09E006E1D99 /* AppDelegate.swift */,
 				3F5C65632B60B09E006E1D99 /* SceneDelegate.swift */,
-				3F5C65652B60B09E006E1D99 /* ViewController.swift */,
 				3F5C65672B60B09E006E1D99 /* Main.storyboard */,
 				3F5C656A2B60B0A0006E1D99 /* Assets.xcassets */,
 				3F5C656C2B60B0A0006E1D99 /* LaunchScreen.storyboard */,
 				3F5C656F2B60B0A0006E1D99 /* Info.plist */,
+				1C403ED32B62101D00D11507 /* ThemeColor.swift */,
 			);
 			path = BodyCapture;
 			sourceTree = "<group>";
@@ -143,6 +165,12 @@
 			dependencies = (
 			);
 			name = BodyCapture;
+			packageProductDependencies = (
+				1C403EDA2B622CCC00D11507 /* KakaoSDK */,
+				1C403EDC2B622CCC00D11507 /* KakaoSDKAuth */,
+				1C403EDE2B622CCC00D11507 /* KakaoSDKCommon */,
+				1C403EE02B622CCC00D11507 /* KakaoSDKUser */,
+			);
 			productName = BodyCapture;
 			productReference = 3F5C655E2B60B09E006E1D99 /* BodyCapture.app */;
 			productType = "com.apple.product-type.application";
@@ -215,6 +243,9 @@
 				Base,
 			);
 			mainGroup = 3F5C65552B60B09E006E1D99;
+			packageReferences = (
+				1C403ED92B622CCC00D11507 /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */,
+			);
 			productRefGroup = 3F5C655F2B60B09E006E1D99 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -258,7 +289,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3F5C65662B60B09E006E1D99 /* ViewController.swift in Sources */,
+				3F5C65662B60B09E006E1D99 /* LoginViewController.swift in Sources */,
+				1C403ED42B62101D00D11507 /* ThemeColor.swift in Sources */,
+				1C403ED82B62223B00D11507 /* MainTabController.swift in Sources */,
 				3F5C65622B60B09E006E1D99 /* AppDelegate.swift in Sources */,
 				3F5C65642B60B09E006E1D99 /* SceneDelegate.swift in Sources */,
 			);
@@ -447,8 +480,9 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -456,9 +490,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = BodyCapture.BodyCapture;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -474,8 +511,9 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -483,9 +521,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = BodyCapture.BodyCapture;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -601,6 +642,40 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		1C403ED92B622CCC00D11507 /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kakao/kakao-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.20.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		1C403EDA2B622CCC00D11507 /* KakaoSDK */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1C403ED92B622CCC00D11507 /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */;
+			productName = KakaoSDK;
+		};
+		1C403EDC2B622CCC00D11507 /* KakaoSDKAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1C403ED92B622CCC00D11507 /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */;
+			productName = KakaoSDKAuth;
+		};
+		1C403EDE2B622CCC00D11507 /* KakaoSDKCommon */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1C403ED92B622CCC00D11507 /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */;
+			productName = KakaoSDKCommon;
+		};
+		1C403EE02B622CCC00D11507 /* KakaoSDKUser */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1C403ED92B622CCC00D11507 /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */;
+			productName = KakaoSDKUser;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 3F5C65562B60B09E006E1D99 /* Project object */;
 }
