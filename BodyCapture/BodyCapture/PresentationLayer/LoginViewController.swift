@@ -26,9 +26,10 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
         configureUI()
     }
-    
+    //MARK: - AutoLayout + 추가적 ui설정
     func configureUI() {
         view.backgroundColor = .white
+        appleLoginButton.addTarget(self, action: #selector(handleAppleIdRequest), for: .touchUpInside)
         view.addSubview(logoImageView)
         view.addSubview(appleLoginButton)
         view.addSubview(kakaoLoginButton)
@@ -57,6 +58,32 @@ class LoginViewController: UIViewController {
             kakaoLoginButton.heightAnchor.constraint(equalTo: appleLoginButton.heightAnchor)
         ])
     }
+    
+    //MARK: - Helpers
+    @objc func handleAppleIdRequest() {
+        let appleIDProvider = ASAuthorizationAppleIDProvider()
+        let request = appleIDProvider.createRequest()
+        request.requestedScopes = [.fullName, .email]
+        
+        let authorizationController = ASAuthorizationController(authorizationRequests: [request])
+        authorizationController.delegate = self
+        authorizationController.performRequests()
+    }
 
 }
 
+//apple로 로그인 버튼 눌렀을 때의 처리
+extension LoginViewController: ASAuthorizationControllerDelegate {
+    // 인증 성공 처리
+    func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
+        
+        print("Apple 로그인 인증 성공")
+        let authenticateUserUseCase = AppleAuthenticateUserUseCase()
+        authenticateUserUseCase.handleAuthorization(withAuthorization: authorization)
+        }
+    
+    // 인증 실패 처리
+    func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
+        print("Apple 로그인 인증 실패: \(error.localizedDescription)")
+    }
+}
