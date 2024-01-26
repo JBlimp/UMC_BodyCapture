@@ -24,10 +24,29 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let scene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: scene)
-        window?.rootViewController = LoginViewController()
+        checkIfUserIsLoggedIn()
         window?.makeKeyAndVisible()
     }
 
+    func checkIfUserIsLoggedIn() { // 백엔드 서버에 토큰 유효성 검사 요청 : 비동기 네트워크 요청
+        if isTokenValid() {
+            
+            self.window?.rootViewController = MainTabController()
+        } else {
+            // 토큰이 유효하지 않으면 LoginController를 표시
+            DispatchQueue.main.async {
+                let loginController = LoginViewController()
+                let navController = UINavigationController(rootViewController: loginController)
+                navController.modalPresentationStyle = .fullScreen
+                self.window?.rootViewController = navController
+            }
+        }
+    }
+    //구현해야할 것! : 토큰 유효성 검사 함수
+    func isTokenValid() -> Bool {
+        return false
+    }
+    
     func sceneDidDisconnect(_ scene: UIScene) {
         // Called as the scene is being released by the system.
         // This occurs shortly after the scene enters the background, or when its session is discarded.
