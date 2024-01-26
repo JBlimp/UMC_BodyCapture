@@ -1,5 +1,6 @@
 import UIKit
 import AuthenticationServices
+import KakaoSDKUser
 
 class LoginViewController: UIViewController {
 
@@ -19,12 +20,15 @@ class LoginViewController: UIViewController {
         button.setImage(UIImage(named: "kakao_login_large_wide"), for: .normal)
         button.backgroundColor = UIColor(hex: "#FEE500")
         button.layer.cornerRadius = 12
+        button.addTarget(self, action: #selector(kakaoLoginButtonTouchUpInside), for: .touchUpInside)
         return button
     }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
+        
+        
     }
     
     func configureUI() {
@@ -57,6 +61,47 @@ class LoginViewController: UIViewController {
             kakaoLoginButton.heightAnchor.constraint(equalTo: appleLoginButton.heightAnchor)
         ])
     }
+
+    //kakao login
+    @objc func kakaoLoginButtonTouchUpInside(_ sender: Any) {
+        if (UserApi.isKakaoTalkLoginAvailable()) {
+            
+            //카톡 설치되어있으면 -> 카톡으로 로그인
+            UserApi.shared.loginWithKakaoTalk {(oauthToken, error) in
+                if let error = error {
+                    print(error)
+                } else {
+                    print("카카오 톡으로 로그인 성공")
+                    
+                    _ = oauthToken
+                    /// 로그인 관련 메소드 추가
+                }
+            }
+        } else {
+            
+            // 카톡 없으면 -> 계정으로 로그인
+            UserApi.shared.loginWithKakaoAccount { (oauthToken, error) in
+                if let error = error {
+                    print(error)
+                } else {
+                    print("카카오 계정으로 로그인 성공")
+                    
+                    _ = oauthToken
+                    // 관련 메소드 추가
+                    
+                    UserApi.shared.me { user, error in
+                        if let error = error {
+                            print(error)
+                        } else {
+                            let profileImageURL = user?.kakaoAccount?.profile?.profileImageUrl
+                            let nickname = user?.kakaoAccount?.profile?.nickname
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
 
 }
 

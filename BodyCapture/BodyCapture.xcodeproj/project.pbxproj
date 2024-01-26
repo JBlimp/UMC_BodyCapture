@@ -57,6 +57,7 @@
 		3F5C657E2B60B0A1006E1D99 /* BodyCaptureUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BodyCaptureUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F5C65822B60B0A1006E1D99 /* BodyCaptureUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BodyCaptureUITests.swift; sourceTree = "<group>"; };
 		3F5C65842B60B0A1006E1D99 /* BodyCaptureUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BodyCaptureUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		3FCB408A2B638D2100EC594A /* BodyCapture.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BodyCapture.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,6 +121,7 @@
 		3F5C65602B60B09E006E1D99 /* BodyCapture */ = {
 			isa = PBXGroup;
 			children = (
+				3FCB408A2B638D2100EC594A /* BodyCapture.entitlements */,
 				1C403ED02B62050D00D11507 /* PresentationLayer */,
 				3F5C65612B60B09E006E1D99 /* AppDelegate.swift */,
 				3F5C65632B60B09E006E1D99 /* SceneDelegate.swift */,
@@ -473,8 +475,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = BodyCapture/BodyCapture.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = XY8HCKR7S2;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = BodyCapture/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -504,8 +508,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = BodyCapture/BodyCapture.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = XY8HCKR7S2;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = BodyCapture/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
