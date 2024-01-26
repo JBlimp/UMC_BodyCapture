@@ -44,7 +44,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
     //구현해야할 것! : 토큰 유효성 검사 함수
     func isTokenValid() -> Bool {
-        return false
+        return true
     }
     
     func sceneDidDisconnect(_ scene: UIScene) {
