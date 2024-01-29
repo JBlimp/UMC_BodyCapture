@@ -7,19 +7,24 @@
 
 import UIKit
 import KakaoSDKAuth
+import GoogleSignIn
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
 
-    //kakao login
     func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
-            if let url = URLContexts.first?.url {
-                if (AuthApi.isKakaoTalkLoginUrl(url)) {
-                    _ = AuthController.handleOpenUrl(url: url)
-                }
+        //kakao login
+        if let url = URLContexts.first?.url {
+            if (AuthApi.isKakaoTalkLoginUrl(url)) {
+                _ = AuthController.handleOpenUrl(url: url)
             }
         }
+        
+        //google login
+        guard let url = URLContexts.first?.url else {return}
+        let _ = GIDSignIn.sharedInstance.handle(url)
+    }
     
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let scene = (scene as? UIWindowScene) else { return }
@@ -44,7 +49,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
     //구현해야할 것! : 토큰 유효성 검사 함수
     func isTokenValid() -> Bool {
-        return true
+        return false
     }
     
     func sceneDidDisconnect(_ scene: UIScene) {
