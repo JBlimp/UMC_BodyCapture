@@ -20,7 +20,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 }
             }
         }
-    
+    //어떤 화면? 함수
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let scene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: scene)
@@ -44,7 +44,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
     //구현해야할 것! : 토큰 유효성 검사 함수
     func isTokenValid() -> Bool {
-        return true
+        return false
     }
     
     func sceneDidDisconnect(_ scene: UIScene) {

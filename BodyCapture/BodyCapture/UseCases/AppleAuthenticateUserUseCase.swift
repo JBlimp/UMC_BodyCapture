@@ -13,6 +13,14 @@ class AppleAuthenticateUserUseCase {
         print("User fullname: \(String(describing: user.fullName))")
         print("User email: \(String(describing: user.email))")
         print("User token: \(String(describing: user.token))")
+        authenticateUser(user: user) { [weak self] isAuthenticated in
+            guard let self = self, isAuthenticated else {
+                print("사용자 인증 실패")
+                return
+            }
+            // 백엔드 서버로 데이터 전송
+            self.sendUserDataToBackend(user: user)
+        }
     }
 
     func handleAuthorization(withAuthorization authorization: ASAuthorization) {
@@ -29,6 +37,17 @@ class AppleAuthenticateUserUseCase {
             
             execute(user: user) //!!
         }
+    }
+    
+    private func authenticateUser(user: User, completion: @escaping (Bool) -> Void) {
+            // 여기에 사용자 인증 로직을 구현합니다.
+            // 예: 사용자 정보를 검증하고 결과를 반환
+            completion(true) // 임시
+        }
+
+    private func sendUserDataToBackend(user: User) {
+            // 백엔드 서버로 사용자 데이터를 전송하는 HTTP 요청 로직을 구현(HTTP POST 요청)
+        print("백엔드 서버로 사용자 데이터 전송: \(user)")
     }
 
     // 타입 변환 메서드 (-> string)

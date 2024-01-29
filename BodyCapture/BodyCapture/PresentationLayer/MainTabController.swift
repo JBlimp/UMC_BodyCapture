@@ -1,6 +1,10 @@
 import UIKit
 
 class MainTabController: UITabBarController {
+    //MARK: - properties
+    
+    var currentUser: User?
+    
     //MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
