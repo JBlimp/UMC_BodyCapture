@@ -7,6 +7,7 @@
 
 import UIKit
 import KakaoSDKAuth
+import KakaoSDKUser
 import GoogleSignIn
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
@@ -64,8 +65,27 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             return
         }
         
+        /*userdefault 초기화
+         for key in UserDefaults.standard.dictionaryRepresentation().keys {
+                    UserDefaults.standard.removeObject(forKey: key.description)
+                }*/
+        
         if socialIsWhat == "kakao" {
             //kakao 로그인 확인 구현
+            if (AuthApi.hasToken()) {//유효한 토큰 존재
+                UserApi.shared.accessTokenInfo { (_, error) in
+                    if let error = error {
+                        completion(false)
+                    }
+                    else {
+                        //토큰 유효성 체크 성공(필요 시 토큰 갱신됨)
+                        completion(true)
+                    }
+                }
+            }
+            else {
+                //로그인 필요
+            }
         } else if socialIsWhat == "google" {
             GIDSignIn.sharedInstance.restorePreviousSignIn { user, error in
                 if error != nil || user == nil {
