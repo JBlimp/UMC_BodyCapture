@@ -11,6 +11,7 @@ import GoogleSignIn
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
+    weak var viewController: UIViewController?
     var window: UIWindow?
 
     func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
@@ -34,45 +35,54 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window?.makeKeyAndVisible()
     }
 
-    func checkIfUserIsLoggedIn() { // 백엔드 서버에 토큰 유효성 검사 요청 : 비동기 네트워크 요청
-        if isTokenValid() {
-            
-            self.window?.rootViewController = MainTabController()
-        } else {
-            // 토큰이 유효하지 않으면 LoginController를 표시
+    func checkIfUserIsLoggedIn() {
+        isTokenValid { isValid in
             DispatchQueue.main.async {
-                let loginController = LoginViewController()
-                let navController = UINavigationController(rootViewController: loginController)
-                navController.modalPresentationStyle = .fullScreen
-                self.window?.rootViewController = navController
+                if isValid {
+                    // 토큰이 유효한 경우, MainTabController 표시
+                    self.window?.rootViewController = MainTabController()
+                } else {
+                    // 토큰이 유효하지 않은 경우, LoginController를 표시
+                    let loginController = LoginViewController()
+                    let navController = UINavigationController(rootViewController: loginController)
+                    navController.modalPresentationStyle = .fullScreen
+                    self.window?.rootViewController = navController
+                }
             }
         }
     }
+
     //구현해야할 것! : 토큰 유효성 검사 함수
-    func isTokenValid() -> Bool {
-        let socialIsWhat: String = UserDefaults.standard.object(forKey: "socialIsWhat") as! String
+    func isTokenValid(completion: @escaping (Bool) -> Void) {
+        let socialIsWhat: String? = UserDefaults.standard.object(forKey: "socialIsWhat") as? String
         
-        var isTokenValid = false
+        guard let socialIsWhat = socialIsWhat else {
+            let login = LoginViewController()
+            login.modalPresentationStyle = .fullScreen
+            viewController?.present(login, animated: true, completion: nil)
+            completion(false)
+            return
+        }
+        
         if socialIsWhat == "kakao" {
             //kakao 로그인 확인 구현
         } else if socialIsWhat == "google" {
             GIDSignIn.sharedInstance.restorePreviousSignIn { user, error in
                 if error != nil || user == nil {
                     //비로그인 상태
-                    isTokenValid = false
+                    completion(false)
                 } else {
                     //로그인 상태
                     guard let user = user else {return}
                     guard let profile = user.profile else {return}
-                    isTokenValid = true
+                    completion(true)
                     print(profile.email)
                 }
             }
         } else if socialIsWhat == "apple" {
             //apple 로그인 확인 구현
         }
-         
-        return isTokenValid
+
     }
     
     func sceneDidDisconnect(_ scene: UIScene) {
