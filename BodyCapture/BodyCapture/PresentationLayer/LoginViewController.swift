@@ -144,11 +144,6 @@ class LoginViewController: UIViewController {
             UserApi.shared.loginWithKakaoTalk { [weak self] (oauthToken, error) in
                 if let error = error {
                     print(error)
-                } else {
-                    print("카카오톡으로 로그인 성공")
-                    
-                    _ = oauthToken
-                    /// 로그인 관련 메소드 추가
                 } else if let oauthToken = oauthToken {
                     kakaoAuthenticateUser.handleLoginSuccess(oauthToken: oauthToken)
                 }
