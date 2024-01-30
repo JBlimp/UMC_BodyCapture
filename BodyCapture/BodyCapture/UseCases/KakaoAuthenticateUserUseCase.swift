@@ -19,16 +19,11 @@ class KakaoAuthenticateUserUseCase {
                     email: user.kakaoAccount?.email,
                     token: oauthToken.accessToken
                 )
-                self.sendTokenToBackend(token: oauthToken.accessToken)
+                UserDefaults.standard.set("kakao", forKey: "socialIsWhat")
                 self.navigateToNextScreen(with: newUser)
             }
         }
     }
-    
-    func sendTokenToBackend(token: String) {
-            // 백엔드 서버로 토큰을 전송하는 HTTP 요청 로직을 구현 (HTTP POST)
-            
-        }
     
     func navigateToNextScreen(with user: User) {
         // 다음 화면으로 이동하는 로직

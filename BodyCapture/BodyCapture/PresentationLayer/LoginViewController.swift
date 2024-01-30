@@ -112,6 +112,7 @@ class LoginViewController: UIViewController {
                 return
             }
             //로그인 성공시
+            UserDefaults.standard.set("google", forKey: "socialIsWhat")
             guard let user = GIDSignInResult?.user else {return}
             guard let profile = user.profile else {return}
             //유저 데이터 처리

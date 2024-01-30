@@ -50,7 +50,29 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
     //구현해야할 것! : 토큰 유효성 검사 함수
     func isTokenValid() -> Bool {
-        return false
+        let socialIsWhat: String = UserDefaults.standard.object(forKey: "socialIsWhat") as! String
+        
+        var isTokenValid = false
+        if socialIsWhat == "kakao" {
+            //kakao 로그인 확인 구현
+        } else if socialIsWhat == "google" {
+            GIDSignIn.sharedInstance.restorePreviousSignIn { user, error in
+                if error != nil || user == nil {
+                    //비로그인 상태
+                    isTokenValid = false
+                } else {
+                    //로그인 상태
+                    guard let user = user else {return}
+                    guard let profile = user.profile else {return}
+                    isTokenValid = true
+                    print(profile.email)
+                }
+            }
+        } else if socialIsWhat == "apple" {
+            //apple 로그인 확인 구현
+        }
+         
+        return isTokenValid
     }
     
     func sceneDidDisconnect(_ scene: UIScene) {
