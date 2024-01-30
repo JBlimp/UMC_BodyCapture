@@ -28,7 +28,7 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
         configureUI()
         
-        
+        checkGoogleLoginState()
     }
     //MARK: - AutoLayout + 추가적 ui설정
     func configureUI() {
