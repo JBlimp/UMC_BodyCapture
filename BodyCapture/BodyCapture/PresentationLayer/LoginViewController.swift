@@ -3,9 +3,11 @@ import AuthenticationServices
 import KakaoSDKUser
 import GoogleSignIn
 
+import KakaoSDKAuth
 
 class LoginViewController: UIViewController {
-
+    
+    
     //var imageName = ""
     
     let logoImageView = {
@@ -51,6 +53,8 @@ class LoginViewController: UIViewController {
         view.addSubview(kakaoLoginButton)
         view.addSubview(googleLoginButton)
         
+        appleLoginButton.addTarget(self, action: #selector(handleAppleIdRequest), for: .touchUpInside)
+        
         logoImageView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             logoImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
@@ -84,7 +88,7 @@ class LoginViewController: UIViewController {
         ])
     }
     
-    //MARK: - Helpers
+    //MARK: - Actions
     @objc func handleAppleIdRequest() {
         let appleIDProvider = ASAuthorizationAppleIDProvider()
         let request = appleIDProvider.createRequest()
@@ -92,6 +96,7 @@ class LoginViewController: UIViewController {
         
         let authorizationController = ASAuthorizationController(authorizationRequests: [request])
         authorizationController.delegate = self
+        authorizationController.presentationContextProvider = self
         authorizationController.performRequests()
     }
     
@@ -132,10 +137,11 @@ class LoginViewController: UIViewController {
     
     //kakao login
     @objc func kakaoLoginButtonTouchUpInside(_ sender: Any) {
-        if (UserApi.isKakaoTalkLoginAvailable()) {
-            
-            //카톡 설치되어있으면 -> 카톡으로 로그인
-            UserApi.shared.loginWithKakaoTalk {(oauthToken, error) in
+        let kakaoAuthenticateUser = KakaoAuthenticateUserUseCase()
+        kakaoAuthenticateUser.viewController = self
+        
+        if UserApi.isKakaoTalkLoginAvailable() {
+            UserApi.shared.loginWithKakaoTalk { [weak self] (oauthToken, error) in
                 if let error = error {
                     print(error)
                 } else {
@@ -143,35 +149,23 @@ class LoginViewController: UIViewController {
                     
                     _ = oauthToken
                     /// 로그인 관련 메소드 추가
+                } else if let oauthToken = oauthToken {
+                    kakaoAuthenticateUser.handleLoginSuccess(oauthToken: oauthToken)
                 }
             }
         } else {
-            
-            // 카톡 없으면 -> 계정으로 로그인
-            UserApi.shared.loginWithKakaoAccount { (oauthToken, error) in
+            UserApi.shared.loginWithKakaoAccount { [weak self] (oauthToken, error) in
                 if let error = error {
                     print(error)
-                } else {
-                    print("카카오 계정으로 로그인 성공")
-                    
-                    _ = oauthToken
-                    // 관련 메소드 추가
-                    
-                    UserApi.shared.me { user, error in
-                        if let error = error {
-                            print(error)
-                        } else {
-                            let profileImageURL = user?.kakaoAccount?.profile?.profileImageUrl
-                            let nickname = user?.kakaoAccount?.profile?.nickname
-                        }
-                    }
+                } else if let oauthToken = oauthToken {
+                    kakaoAuthenticateUser.handleLoginSuccess(oauthToken: oauthToken)
                 }
             }
         }
     }
     
-
 }
+
 
 //apple로 로그인 버튼 눌렀을 때의 처리
 extension LoginViewController: ASAuthorizationControllerDelegate {
@@ -181,10 +175,16 @@ extension LoginViewController: ASAuthorizationControllerDelegate {
         print("Apple 로그인 인증 성공")
         let authenticateUserUseCase = AppleAuthenticateUserUseCase()
         authenticateUserUseCase.handleAuthorization(withAuthorization: authorization)
-        }
+    }
     
     // 인증 실패 처리
     func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
         print("Apple 로그인 인증 실패: \(error.localizedDescription)")
+    }
+}
+
+    extension LoginViewController: ASAuthorizationControllerPresentationContextProviding {
+    func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor {
+        self.view.window!
     }
 }

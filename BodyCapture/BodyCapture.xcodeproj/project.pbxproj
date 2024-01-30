@@ -17,6 +17,7 @@
 		1C403EF62B63A10800D11507 /* StoreController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C403EF52B63A10800D11507 /* StoreController.swift */; };
 		1C403EFD2B63A2A300D11507 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C403EFA2B63A2A300D11507 /* User.swift */; };
 		1C403EFE2B63A2A300D11507 /* AppleAuthenticateUserUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C403EFC2B63A2A300D11507 /* AppleAuthenticateUserUseCase.swift */; };
+		1C403F002B65F3CF00D11507 /* KakaoAuthenticateUserUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C403EFF2B65F3CF00D11507 /* KakaoAuthenticateUserUseCase.swift */; };
 		3F5C65622B60B09E006E1D99 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5C65612B60B09E006E1D99 /* AppDelegate.swift */; };
 		3F5C65642B60B09E006E1D99 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5C65632B60B09E006E1D99 /* SceneDelegate.swift */; };
 		3F5C65662B60B09E006E1D99 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5C65652B60B09E006E1D99 /* LoginViewController.swift */; };
@@ -53,6 +54,7 @@
 		1C403EF52B63A10800D11507 /* StoreController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreController.swift; sourceTree = "<group>"; };
 		1C403EFA2B63A2A300D11507 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		1C403EFC2B63A2A300D11507 /* AppleAuthenticateUserUseCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppleAuthenticateUserUseCase.swift; sourceTree = "<group>"; };
+		1C403EFF2B65F3CF00D11507 /* KakaoAuthenticateUserUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KakaoAuthenticateUserUseCase.swift; sourceTree = "<group>"; };
 		3F5C655E2B60B09E006E1D99 /* BodyCapture.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BodyCapture.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F5C65612B60B09E006E1D99 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3F5C65632B60B09E006E1D99 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -122,6 +124,7 @@
 			isa = PBXGroup;
 			children = (
 				1C403EFC2B63A2A300D11507 /* AppleAuthenticateUserUseCase.swift */,
+				1C403EFF2B65F3CF00D11507 /* KakaoAuthenticateUserUseCase.swift */,
 			);
 			path = UseCases;
 			sourceTree = "<group>";
@@ -324,6 +327,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3F5C65662B60B09E006E1D99 /* LoginViewController.swift in Sources */,
+				1C403F002B65F3CF00D11507 /* KakaoAuthenticateUserUseCase.swift in Sources */,
 				1C403ED42B62101D00D11507 /* ThemeColor.swift in Sources */,
 				1C403EF42B63A10100D11507 /* HomeController.swift in Sources */,
 				1C403ED82B62223B00D11507 /* MainTabController.swift in Sources */,
@@ -514,7 +518,7 @@
 				CODE_SIGN_ENTITLEMENTS = BodyCapture/BodyCapture.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = XY8HCKR7S2;
+				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = BodyCapture/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -547,7 +551,7 @@
 				CODE_SIGN_ENTITLEMENTS = BodyCapture/BodyCapture.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = XY8HCKR7S2;
+				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = BodyCapture/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
