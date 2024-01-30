@@ -101,6 +101,20 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             }
         } else if socialIsWhat == "apple" {
             //apple 로그인 확인 구현
+            let appleIDProvider = ASAuthorizationAppleIDProvider()
+            appleIDProvider.getCredentialState(forUserID: /* userIdentifier */) { (credentialState, error) in
+                switch credentialState {
+                case .authorized:
+                    // User is logged in
+                    completion(true)
+                case .revoked, .notFound:
+                    // User is not logged in
+                    completion(false)
+                default:
+                    // Unknown state
+                    completion(false)
+                }
+            }
         }
 
     }
