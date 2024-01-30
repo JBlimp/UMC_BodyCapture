@@ -33,6 +33,8 @@ class AppleAuthenticateUserUseCase {
             let email = appleIDCredential.email
             let identityToken = convertDataToString(appleIDCredential.identityToken)
             
+            UserDefaults.standard.set(identityToken, forKey: "AppleUserID")
+            
             let user = User(identifier: userIdentifier, fullName: fullName, email: email, token: identityToken)
             
             execute(user: user) //!!

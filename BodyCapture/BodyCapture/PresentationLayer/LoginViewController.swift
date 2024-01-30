@@ -39,8 +39,6 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
-        
-        checkGoogleLoginState()
     }
     //MARK: - AutoLayout + 추가적 ui설정
     func configureUI() {
@@ -119,21 +117,6 @@ class LoginViewController: UIViewController {
             print(profile.email)
         }
         
-    }
-    
-    //google 로그인 여부 확인 함수
-    func checkGoogleLoginState() {
-        GIDSignIn.sharedInstance.restorePreviousSignIn { user, error in
-            if error != nil || user == nil {
-                //비로그인 상태
-                print("not sign in")
-            } else {
-                //로그인 상태
-                guard let user = user else {return}
-                guard let profile = user.profile else {return}
-                //유저 데이터 처리
-            }
-        }
     }
     
     //kakao login
