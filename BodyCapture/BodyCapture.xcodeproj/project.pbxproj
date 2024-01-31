@@ -29,6 +29,7 @@
 		3F5C65832B60B0A1006E1D99 /* BodyCaptureUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5C65822B60B0A1006E1D99 /* BodyCaptureUITests.swift */; };
 		3F5C65852B60B0A1006E1D99 /* BodyCaptureUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5C65842B60B0A1006E1D99 /* BodyCaptureUITestsLaunchTests.swift */; };
 		3FCB40952B66763E00EC594A /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = 3FCB40942B66763E00EC594A /* GoogleSignIn */; };
+		3FCB409E2B6A58A100EC594A /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCB409D2B6A58A100EC594A /* RegisterViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,6 +72,7 @@
 		3F5C65822B60B0A1006E1D99 /* BodyCaptureUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BodyCaptureUITests.swift; sourceTree = "<group>"; };
 		3F5C65842B60B0A1006E1D99 /* BodyCaptureUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BodyCaptureUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		3FCB408A2B638D2100EC594A /* BodyCapture.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BodyCapture.entitlements; sourceTree = "<group>"; };
+		3FCB409D2B6A58A100EC594A /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,6 +113,7 @@
 				1C403EF32B63A10000D11507 /* HomeController.swift */,
 				3F5C65652B60B09E006E1D99 /* LoginViewController.swift */,
 				1C403ED72B62223B00D11507 /* MainTabController.swift */,
+				3FCB409D2B6A58A100EC594A /* RegisterViewController.swift */,
 			);
 			path = PresentationLayer;
 			sourceTree = "<group>";
@@ -332,6 +335,7 @@
 				3F5C65662B60B09E006E1D99 /* LoginViewController.swift in Sources */,
 				1C403F002B65F3CF00D11507 /* KakaoAuthenticateUserUseCase.swift in Sources */,
 				1C403ED42B62101D00D11507 /* ThemeColor.swift in Sources */,
+				3FCB409E2B6A58A100EC594A /* RegisterViewController.swift in Sources */,
 				1C403EF42B63A10100D11507 /* HomeController.swift in Sources */,
 				1C403ED82B62223B00D11507 /* MainTabController.swift in Sources */,
 				1C403EFE2B63A2A300D11507 /* AppleAuthenticateUserUseCase.swift in Sources */,
