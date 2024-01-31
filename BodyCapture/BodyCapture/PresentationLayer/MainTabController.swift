@@ -22,8 +22,9 @@ class MainTabController: UITabBarController {
         
         let home = templateNavigationController(unselectedImage: UIImage(systemName: "house")!, selectedImage: UIImage(systemName: "house.fill")!, rootVC: HomeController())
         let store =  templateNavigationController(unselectedImage: UIImage(systemName: "storefront")!, selectedImage: UIImage(systemName: "storefront.fill")!, rootVC: StoreController())
+        let heart = templateNavigationController(unselectedImage: UIImage(systemName: "heart")!, selectedImage: UIImage(systemName: "heart.fill")!, rootVC: HeartController())
         
-        viewControllers = [home, store]
+        viewControllers = [home, store, heart]
         tabBar.tintColor = .black
     }
     

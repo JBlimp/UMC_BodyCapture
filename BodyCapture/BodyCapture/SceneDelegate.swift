@@ -103,7 +103,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         } else if socialIsWhat == "apple" {
             //apple 로그인 확인 구현
             let appleIDProvider = ASAuthorizationAppleIDProvider()
-            appleIDProvider.getCredentialState(forUserID: (UserDefaults.standard.object(forKey: "socialIsWhat") as? String)!) { (credentialState, error) in
+            appleIDProvider.getCredentialState(forUserID: (UserDefaults.standard.object(forKey: "AppleUserID") as? String)!) { (credentialState, error) in
                 switch credentialState {
                 case .authorized:
                     // User is logged in
