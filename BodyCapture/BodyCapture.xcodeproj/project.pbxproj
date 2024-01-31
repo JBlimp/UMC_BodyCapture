@@ -518,7 +518,7 @@
 				CODE_SIGN_ENTITLEMENTS = BodyCapture/BodyCapture.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = XY8HCKR7S2;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = BodyCapture/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -551,7 +551,7 @@
 				CODE_SIGN_ENTITLEMENTS = BodyCapture/BodyCapture.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = XY8HCKR7S2;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = BodyCapture/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

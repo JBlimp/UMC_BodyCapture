@@ -19,6 +19,12 @@ class KakaoAuthenticateUserUseCase {
                     email: user.kakaoAccount?.email,
                     token: oauthToken.accessToken
                 )
+                
+                if let userID = user.id {
+                    print("userid입니다")
+                    print(userID)
+                }
+                
                 UserDefaults.standard.set("kakao", forKey: "socialIsWhat")
                 self.navigateToNextScreen(with: newUser)
             }

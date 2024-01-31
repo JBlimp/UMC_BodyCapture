@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   uuid = "935CC092-8489-4E5F-ACA3-94B145D1FA19"
+   type = "1"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "47076C02-72D3-47AA-9C94-8273CE1806AD"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BodyCapture/UseCases/KakaoAuthenticateUserUseCase.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "23"
+            endingLineNumber = "23"
+            landmarkName = "handleLoginSuccess(oauthToken:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "47076C02-72D3-47AA-9C94-8273CE1806AD - 7e2c1f0f69979b63"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;KakaoSDKUser.User&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in BodyCapture.KakaoAuthenticateUserUseCase.handleLoginSuccess(oauthToken: Swift.Optional&lt;KakaoSDKAuth.OAuthToken&gt;) -&gt; ()"
+                  moduleName = "BodyCapture"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/newnew/Desktop/UMC_BodyCapture/BodyCapture/BodyCapture/UseCases/KakaoAuthenticateUserUseCase.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "23"
+                  endingLineNumber = "23"
+                  offsetFromSymbolStart = "2328">
+               </Location>
+               <Location
+                  uuid = "47076C02-72D3-47AA-9C94-8273CE1806AD - 7e2c1f0f69979b63"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;KakaoSDKUser.User&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in BodyCapture.KakaoAuthenticateUserUseCase.handleLoginSuccess(oauthToken: Swift.Optional&lt;KakaoSDKAuth.OAuthToken&gt;) -&gt; ()"
+                  moduleName = "BodyCapture"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/newnew/Desktop/UMC_BodyCapture/BodyCapture/BodyCapture/UseCases/KakaoAuthenticateUserUseCase.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "23"
+                  endingLineNumber = "23"
+                  offsetFromSymbolStart = "2412">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>
