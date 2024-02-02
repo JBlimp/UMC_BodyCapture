@@ -17,13 +17,10 @@ class KakaoAuthenticateUserUseCase {
                     identifier: String(user.id!),
                     fullName: user.kakaoAccount?.profile?.nickname,
                     email: user.kakaoAccount?.email,
-                    token: oauthToken.accessToken
+                    socialIsWhat: "kakao"
                 )
                 
-                if let userID = user.id {
-                    print("userid입니다")
-                    print(userID)
-                }
+                print("kakao user info: \(newUser)")
                 
                 UserDefaults.standard.set("kakao", forKey: "socialIsWhat")
                 self.navigateToNextScreen(with: newUser)
@@ -33,10 +30,16 @@ class KakaoAuthenticateUserUseCase {
     
     func navigateToNextScreen(with user: User) {
         // 다음 화면으로 이동하는 로직
-        let maintab = MainTabController()
-        maintab.currentUser = user
-        maintab.modalPresentationStyle = .fullScreen
-        viewController?.present(maintab, animated: true, completion: nil)
-        
+        if sendUserDataToServer().isUserExist(with: user) {
+            let nexttab = MainTabController()
+            nexttab.currentUser = user
+            nexttab.modalPresentationStyle = .fullScreen
+            viewController?.present(nexttab, animated: true, completion: nil)
+        } else {
+            let nexttab = RegisterViewController()
+            nexttab.currentUser = user
+            nexttab.modalPresentationStyle = .fullScreen
+            viewController?.present(nexttab, animated: true, completion: nil)
+        }
     }
 }

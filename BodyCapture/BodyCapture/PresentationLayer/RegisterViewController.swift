@@ -8,5 +8,5 @@
 import UIKit
 
 class RegisterViewController : UIViewController {
-    
+    var currentUser: User?
 }

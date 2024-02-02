@@ -66,8 +66,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             return
         }
         
-        /*userdefault 초기화
-         for key in UserDefaults.standard.dictionaryRepresentation().keys {
+        //userdefault 초기화
+         /*for key in UserDefaults.standard.dictionaryRepresentation().keys {
                     UserDefaults.standard.removeObject(forKey: key.description)
                 }*/
         
@@ -94,10 +94,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                     completion(false)
                 } else {
                     //로그인 상태
-                    guard let user = user else {return}
-                    guard let profile = user.profile else {return}
                     completion(true)
-                    print(profile.email)
                 }
             }
         } else if socialIsWhat == "apple" {

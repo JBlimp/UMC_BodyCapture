@@ -100,6 +100,7 @@ class LoginViewController: UIViewController {
     
     //google login
     @objc func googleLoginButtonTouchUpInside(_ sender: Any) {
+        let googleAuthenticateUser = GoogleAuthenticateUserUseCase()
         GIDSignIn.sharedInstance.signIn(withPresenting: self) { GIDSignInResult, error in
             guard error == nil else {
                 //로그인 실패시
@@ -113,10 +114,14 @@ class LoginViewController: UIViewController {
             UserDefaults.standard.set("google", forKey: "socialIsWhat")
             guard let user = GIDSignInResult?.user else {return}
             guard let profile = user.profile else {return}
-            //유저 데이터 처리
-            print(profile.email)
+            let newUser = User(
+                identifier: user.userID!,
+                fullName: user.profile?.name,
+                email: user.profile?.email,
+                socialIsWhat: "google"
+            )
+            googleAuthenticateUser.handleLoginSuccess(with: newUser)
         }
-        
     }
     
     //kakao login
