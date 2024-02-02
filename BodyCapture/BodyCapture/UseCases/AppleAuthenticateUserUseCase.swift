@@ -18,7 +18,6 @@ class AppleAuthenticateUserUseCase {
                 print("사용자 인증 실패")
                 return
             }
-            // 백엔드 서버로 데이터 전송
             self.sendUserDataToBackend(user: user)
         }
     }
@@ -33,7 +32,7 @@ class AppleAuthenticateUserUseCase {
             let email = appleIDCredential.email
             let identityToken = convertDataToString(appleIDCredential.identityToken)
             
-            UserDefaults.standard.set(identityToken, forKey: "AppleUserID")
+            UserDefaults.standard.set(userIdentifier, forKey: "AppleUserID")
             
             let user = User(identifier: userIdentifier, fullName: fullName, email: email, token: identityToken)
             
@@ -42,8 +41,7 @@ class AppleAuthenticateUserUseCase {
     }
     
     private func authenticateUser(user: User, completion: @escaping (Bool) -> Void) {
-            // 여기에 사용자 인증 로직을 구현합니다.
-            // 예: 사용자 정보를 검증하고 결과를 반환
+
             completion(true) // 임시
         }
 

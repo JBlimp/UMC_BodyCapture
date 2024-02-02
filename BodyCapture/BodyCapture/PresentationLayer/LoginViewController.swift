@@ -156,10 +156,11 @@ class LoginViewController: UIViewController {
 extension LoginViewController: ASAuthorizationControllerDelegate {
     // 인증 성공 처리
     func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
-        
-        print("Apple 로그인 인증 성공")
+        UserDefaults.standard.set("apple", forKey: "socialIsWhat")
         let authenticateUserUseCase = AppleAuthenticateUserUseCase()
         authenticateUserUseCase.handleAuthorization(withAuthorization: authorization)
+        
+        print("Apple 로그인 인증 성공")
     }
     
     // 인증 실패 처리

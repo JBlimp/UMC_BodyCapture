@@ -59,17 +59,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let socialIsWhat: String? = UserDefaults.standard.object(forKey: "socialIsWhat") as? String
         
         guard let socialIsWhat = socialIsWhat else {
-            let login = LoginViewController()
-            login.modalPresentationStyle = .fullScreen
-            viewController?.present(login, animated: true, completion: nil)
             completion(false)
             return
         }
         
         //userdefault 초기화
-         /*for key in UserDefaults.standard.dictionaryRepresentation().keys {
-                    UserDefaults.standard.removeObject(forKey: key.description)
-                }*/
+//         for key in UserDefaults.standard.dictionaryRepresentation().keys {
+//                    UserDefaults.standard.removeObject(forKey: key.description)
+//            }
         
         if socialIsWhat == "kakao" {
             //kakao 로그인 확인 구현
