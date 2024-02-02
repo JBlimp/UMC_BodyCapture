@@ -67,9 +67,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         }
         
         //userdefault 초기화
-         /*for key in UserDefaults.standard.dictionaryRepresentation().keys {
+         for key in UserDefaults.standard.dictionaryRepresentation().keys {
                     UserDefaults.standard.removeObject(forKey: key.description)
-                }*/
+                }
         
         if socialIsWhat == "kakao" {
             //kakao 로그인 확인 구현

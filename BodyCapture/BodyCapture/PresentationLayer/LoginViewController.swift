@@ -101,6 +101,7 @@ class LoginViewController: UIViewController {
     //google login
     @objc func googleLoginButtonTouchUpInside(_ sender: Any) {
         let googleAuthenticateUser = GoogleAuthenticateUserUseCase()
+        googleAuthenticateUser.viewController = self
         GIDSignIn.sharedInstance.signIn(withPresenting: self) { GIDSignInResult, error in
             guard error == nil else {
                 //로그인 실패시
