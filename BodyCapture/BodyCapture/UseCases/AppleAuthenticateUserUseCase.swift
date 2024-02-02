@@ -6,22 +6,8 @@ import AuthenticationServices
 
 class AppleAuthenticateUserUseCase {
     
-    func execute(user: User) {
-        // 사용자 인증 로직 + 데이터를 백엔드에 전송 로직
-        print("사용자 인증 및 백엔드 서버 전송 로직 시작")
-        print("User Identifier: \(user.identifier)")
-        print("User fullname: \(String(describing: user.fullName))")
-        print("User email: \(String(describing: user.email))")
-        print("User token: \(String(describing: user.token))")
-        authenticateUser(user: user) { [weak self] isAuthenticated in
-            guard let self = self, isAuthenticated else {
-                print("사용자 인증 실패")
-                return
-            }
-            self.sendUserDataToBackend(user: user)
-        }
-    }
-
+    weak var viewController: UIViewController?
+    
     func handleAuthorization(withAuthorization authorization: ASAuthorization) {
         if let appleIDCredential = authorization.credential as? ASAuthorizationAppleIDCredential {
             
@@ -36,20 +22,33 @@ class AppleAuthenticateUserUseCase {
             
             let user = User(identifier: userIdentifier, fullName: fullName, email: email, token: identityToken)
             
-            execute(user: user) //!!
+            navigateToNextScreen(with: user)
         }
     }
     
-    private func authenticateUser(user: User, completion: @escaping (Bool) -> Void) {
-
-            completion(true) // 임시
+    func navigateToNextScreen(with user: User) {
+        // 다음 화면으로 이동하는 로직
+        if sendUserDataToServer().isUserExist(with: user) {
+            let nexttab = MainTabController()
+            nexttab.currentUser = user
+            nexttab.modalPresentationStyle = .fullScreen
+            viewController?.present(nexttab, animated: true, completion: nil)
+        } else {
+            let nexttab = RegisterViewController()
+            nexttab.currentUser = user
+            nexttab.modalPresentationStyle = .fullScreen
+            viewController?.present(nexttab, animated: true, completion: nil)
         }
-
-    private func sendUserDataToBackend(user: User) {
-            // 백엔드 서버로 사용자 데이터를 전송하는 HTTP 요청 로직을 구현(HTTP POST 요청)
-        print("백엔드 서버로 사용자 데이터 전송: \(user)")
     }
+    
+//    private func authenticateUser(user: User, completion: @escaping (Bool) -> Void) {
+//
+//            completion(true) // 임시
+//        }
+    
+}
 
+extension AppleAuthenticateUserUseCase {
     // 타입 변환 메서드 (-> string)
     private func formatNameComponents(_ nameComponents: PersonNameComponents?) -> String? {
         guard let nameComponents = nameComponents else { return nil }
