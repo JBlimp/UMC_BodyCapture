@@ -3,6 +3,7 @@
 
 import Foundation
 import AuthenticationServices
+import Alamofire
 
 class AppleAuthenticateUserUseCase {
     
@@ -17,12 +18,14 @@ class AppleAuthenticateUserUseCase {
             let fullName = formatNameComponents(appleIDCredential.fullName)
             let email = appleIDCredential.email
             let identityToken = convertDataToString(appleIDCredential.identityToken)
+                //jwt토큰
             
             UserDefaults.standard.set(userIdentifier, forKey: "AppleUserID")
             
             let user = User(identifier: userIdentifier, fullName: fullName, email: email, token: identityToken)
             
             navigateToNextScreen(with: user)
+            sendJWTToBE(with: user)
         }
     }
     
@@ -39,6 +42,33 @@ class AppleAuthenticateUserUseCase {
             nexttab.modalPresentationStyle = .fullScreen
             viewController?.present(nexttab, animated: true, completion: nil)
         }
+    }
+    
+    func sendJWTToBE(with user: User) {
+        // 서버 URL 설정
+        let url = "???????"
+        
+        // User 정보를 딕셔너리로 구성
+        let parameters: Parameters = [
+            "userIdentifier": user.identifier,
+            "fullName": user.fullName,
+            "email": user.email,
+            "token": user.token
+        ]
+        
+        // Alamofire를 사용하여 HTTP POST 요청 전송
+        AF.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: nil).responseJSON { response in
+            switch response.result {
+            case .success(let value):
+                print("Response: \(value)")
+                // 성공 처리 : 서버로부터 받은 응답을 파싱하여 필요한 작업 수행
+                
+            case .failure(let error):
+                print("Error: \(error.localizedDescription)")
+                // 에러 처리 로직
+            }
+        }
+
     }
     
 //    private func authenticateUser(user: User, completion: @escaping (Bool) -> Void) {
