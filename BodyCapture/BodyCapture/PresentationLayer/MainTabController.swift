@@ -9,30 +9,29 @@ class MainTabController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureTab()
-        view.backgroundColor = .red
+        view.backgroundColor = .white
     }
     
     func configureTab() {
-        view.backgroundColor = .blue
         
         let appearance = UITabBarAppearance()
         appearance.backgroundColor = .white
         tabBar.standardAppearance = appearance
         tabBar.scrollEdgeAppearance = appearance
         
-        let home = templateNavigationController(unselectedImage: UIImage(named: "home")!, selectedImage: UIImage(named: "home.fill")!, rootVC: HomeController())
-        let store =  templateNavigationController(unselectedImage: UIImage(named: "shop")!, selectedImage: UIImage(named: "shop.fill")!, rootVC: StoreController())
-        let heart = templateNavigationController(unselectedImage: UIImage(named: "heart")!, selectedImage: UIImage(named: "heart.fill")!, rootVC: HeartController())
+        let home = templateNavigationController(unselectedImage: UIImage(named: "home")!, selectedImage: UIImage(named: "home.fill")!, title: "홈", rootVC: HomeController())
+        let store =  templateNavigationController(unselectedImage: UIImage(named: "shop")!, selectedImage: UIImage(named: "shop.fill")!, title: "업체", rootVC: StoreController())
+        let heart = templateNavigationController(unselectedImage: UIImage(named: "heart")!, selectedImage: UIImage(named: "heart.fill")!, title: "찜", rootVC: HeartController())
         
         viewControllers = [home, store, heart]
         tabBar.tintColor = .black
     }
     
-    func templateNavigationController(unselectedImage: UIImage, selectedImage: UIImage, rootVC: UIViewController) -> UINavigationController {
+    func templateNavigationController(unselectedImage: UIImage, selectedImage: UIImage, title: String, rootVC: UIViewController) -> UINavigationController {
         let nav = UINavigationController(rootViewController: rootVC)
         nav.tabBarItem.image = unselectedImage
         nav.tabBarItem.selectedImage = selectedImage
-        nav.navigationBar.tintColor = .black
+        nav.tabBarItem.title = title
         
         let appearance = UINavigationBarAppearance()
         appearance.backgroundColor = .white
