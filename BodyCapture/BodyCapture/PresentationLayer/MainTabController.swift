@@ -20,9 +20,9 @@ class MainTabController: UITabBarController {
         tabBar.standardAppearance = appearance
         tabBar.scrollEdgeAppearance = appearance
         
-        let home = templateNavigationController(unselectedImage: UIImage(systemName: "house")!, selectedImage: UIImage(systemName: "house.fill")!, rootVC: HomeController())
-        let store =  templateNavigationController(unselectedImage: UIImage(systemName: "storefront")!, selectedImage: UIImage(systemName: "storefront.fill")!, rootVC: StoreController())
-        let heart = templateNavigationController(unselectedImage: UIImage(systemName: "heart")!, selectedImage: UIImage(systemName: "heart.fill")!, rootVC: HeartController())
+        let home = templateNavigationController(unselectedImage: UIImage(named: "home")!, selectedImage: UIImage(named: "home.fill")!, rootVC: HomeController())
+        let store =  templateNavigationController(unselectedImage: UIImage(named: "shop")!, selectedImage: UIImage(named: "shop.fill")!, rootVC: StoreController())
+        let heart = templateNavigationController(unselectedImage: UIImage(named: "heart")!, selectedImage: UIImage(named: "heart.fill")!, rootVC: HeartController())
         
         viewControllers = [home, store, heart]
         tabBar.tintColor = .black
