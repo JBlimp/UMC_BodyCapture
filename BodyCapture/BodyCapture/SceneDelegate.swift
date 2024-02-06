@@ -63,7 +63,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             return
         }
         
-        //userdefault 초기화
+//        //userdefault 초기화
 //         for key in UserDefaults.standard.dictionaryRepresentation().keys {
 //                    UserDefaults.standard.removeObject(forKey: key.description)
 //            }

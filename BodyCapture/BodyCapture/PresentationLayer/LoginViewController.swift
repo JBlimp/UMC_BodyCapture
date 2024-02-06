@@ -12,8 +12,8 @@ class LoginViewController: UIViewController {
     
     let logoImageView = {
         let logo = UIImageView()
-        logo.backgroundColor = ThemeColor.blue2
-        //logo.image = UIImage(named: <#T##String#>) 디자인 완료 후
+        logo.backgroundColor = .clear
+        logo.image = UIImage(named: "login.logo")
         return logo
     }()
     
@@ -30,9 +30,8 @@ class LoginViewController: UIViewController {
     let googleLoginButton = {
         let button = UIButton()
         button.setImage(UIImage(named: "ios_light_sq_SI"), for: .normal)
-        button.backgroundColor = UIColor(hex: "#FEE500")
+        button.backgroundColor = UIColor(hex: "#FFFFFF")
         button.layer.cornerRadius = 12
-        //button.addTarget(self, action: #selector(kakaoLoginButtonTouchUpInside), for: .touchUpInside)
         return button
     }()
     
