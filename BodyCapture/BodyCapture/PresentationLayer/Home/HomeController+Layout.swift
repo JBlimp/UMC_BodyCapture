@@ -89,7 +89,7 @@ extension HomeController {
         
         containerDdayView.backgroundColor = ThemeColor.blue1
         
-        var dday = "365" //서버 통신
+        var dday = 365 //서버 통신
         ddayLabel.text = "D-\(dday)"
         ddayLabel.textAlignment = .center
         ddayLabel.numberOfLines = 0
