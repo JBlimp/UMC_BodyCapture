@@ -120,6 +120,7 @@
 		1C403ED02B62050D00D11507 /* PresentationLayer */ = {
 			isa = PBXGroup;
 			children = (
+				1C8A62062B72165300A0B30A /* CustomStoreButtonView.swift */,
 				1C8A62082B721F1A00A0B30A /* Store */,
 				1C8A62032B720F1300A0B30A /* Home */,
 				1C00AE022B6A5397001A916D /* HeartController.swift */,
@@ -155,7 +156,6 @@
 			children = (
 				1C403EF32B63A10000D11507 /* HomeController.swift */,
 				1C8A62042B720F7B00A0B30A /* HomeController+Layout.swift */,
-				1C8A62062B72165300A0B30A /* CustomStoreButtonView.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
