@@ -23,6 +23,12 @@ class HomeController: UIViewController {
         return t
     }()
     // 스토어 카테고리
+    var selectedButtonTag: Int? {
+        didSet {
+            updateButtonSelectionStates()
+        }
+    }
+    
     let containerStoreView = {
         let cv = UIView()
         cv.translatesAutoresizingMaskIntoConstraints = false

@@ -2,6 +2,7 @@ import UIKit
 
 class StoreController: UIViewController {
     let searchController = UISearchController(searchResultsController: nil)
+    
     // 스토어 카테고리
     let containerStoreView = {
         let cv = UIView()
@@ -22,17 +23,34 @@ class StoreController: UIViewController {
         return st
     }()
     
+    var selectedButtonTag: Int? {
+        didSet {
+            updateButtonSelectionStates()
+        }
+    }
+    
+    let container = {
+        let c = UIView()
+        c.translatesAutoresizingMaskIntoConstraints = false
+        return c
+    }()
+    //var shopCollection = UICollectionView()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureNaviBarUI()
         configureStoreUI()
+        //configureStoreCollection()
     }
     
     func configureNaviBarUI() {
         self.navigationItem.searchController = searchController
         self.navigationItem.title = "업체"
-        searchController.searchBar.scopeButtonTitles = [
-          "촬영", "메이크업", "헤어", "패키지"
-        ]
+//        searchController.searchBar.scopeButtonTitles = [
+//          "촬영", "메이크업", "헤어", "패키지"
+//        ]
+//        searchController.searchBar.showsScopeBar = true
     }
+    
+
 }

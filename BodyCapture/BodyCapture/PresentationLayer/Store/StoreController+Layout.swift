@@ -18,11 +18,15 @@ extension StoreController {
         buttonsStackView.spacing = 25
         buttonsStackView.translatesAutoresizingMaskIntoConstraints = false
         
-        for (title, image) in zip(titles, images) {
+        for (index, (title, image)) in zip(titles, images).enumerated() {
             let customButtonView = CustomButtonView(image: image, title: title)
+            customButtonView.tag = index
+            customButtonView.delegate = self
             buttonsStackView.addArrangedSubview(customButtonView)
         }
         
+
+        //layout
         containerStoreView.addSubview(buttonsStackView)
         view.addSubview(containerStoreView)
         containerStoreView.backgroundColor = ThemeColor.blue1
@@ -36,6 +40,30 @@ extension StoreController {
             buttonsStackView.centerXAnchor.constraint(equalTo: containerStoreView.centerXAnchor),
             buttonsStackView.centerYAnchor.constraint(equalTo: containerStoreView.centerYAnchor)
         ])
+    }
+    
+    @objc func radioButtonTapped(_ sender: CustomButtonView) {
+        print("Radio button tapped: \(sender.tag)")
+        selectedButtonTag = sender.tag
+        updateButtonSelectionStates()
+    }
 
+
+    func updateButtonSelectionStates() {
+        for case let button as CustomButtonView in buttonsStackView.arrangedSubviews {
+            button.isSelected = (button.tag == selectedButtonTag)
+        }
+    }
+    
+    //collectionview configure
+    func configureStoreCollection() {
+        
+    }
+}
+
+extension StoreController: CustomButtonViewDelegate {
+    func customButtonViewTapped(_ view: CustomButtonView) {
+        print("Button tapped: \(view.tag)")
+        radioButtonTapped(view)
     }
 }
