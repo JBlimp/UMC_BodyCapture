@@ -2,6 +2,7 @@ import UIKit
 
 class StoreController: UIViewController {
     let searchController = UISearchController(searchResultsController: nil)
+    
     // 스토어 카테고리
     let containerStoreView = {
         let cv = UIView()

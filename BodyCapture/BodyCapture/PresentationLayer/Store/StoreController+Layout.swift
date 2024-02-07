@@ -49,11 +49,11 @@ extension StoreController {
     }
 
 
-     func updateButtonSelectionStates() {
-            for case let button as CustomButtonView in buttonsStackView.arrangedSubviews {
-                button.isSelected = (button.tag == selectedButtonTag)
-            }
+    func updateButtonSelectionStates() {
+        for case let button as CustomButtonView in buttonsStackView.arrangedSubviews {
+            button.isSelected = (button.tag == selectedButtonTag)
         }
+    }
     
     //collectionview configure
     func configureStoreCollection() {

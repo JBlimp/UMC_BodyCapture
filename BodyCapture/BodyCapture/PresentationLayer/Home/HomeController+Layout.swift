@@ -138,6 +138,8 @@ extension HomeController {
         
         for (title, image) in zip(titles, images) {
             let customButtonView = CustomButtonView(image: image, title: title)
+//            customButtonView.tag = index
+//            customButtonView.delegate = self
             buttonsStackView.addArrangedSubview(customButtonView)
         }
         
@@ -169,5 +171,26 @@ extension HomeController {
     
     
     
+    
+    
 }
 
+extension HomeController: CustomButtonViewDelegate {
+    func customButtonViewTapped(_ view: CustomButtonView) {
+        print("Button tapped: \(view.tag)")
+        radioButtonTapped(view)
+    }
+    
+    @objc func radioButtonTapped(_ sender: CustomButtonView) {
+        print("Radio button tapped: \(sender.tag)")
+        selectedButtonTag = sender.tag
+        updateButtonSelectionStates()
+    }
+
+
+    func updateButtonSelectionStates() {
+        for case let button as CustomButtonView in buttonsStackView.arrangedSubviews {
+            button.isSelected = (button.tag == selectedButtonTag)
+        }
+    }
+}
