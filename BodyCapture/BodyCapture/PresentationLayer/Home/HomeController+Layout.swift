@@ -34,12 +34,16 @@ extension HomeController {
     }
     //MARK: - profile
     func configureProfileView() {
+        let profileClick = UITapGestureRecognizer(target: self, action: #selector(profileTapped))
+        
         containerView.translatesAutoresizingMaskIntoConstraints = false
         greetingLabel.translatesAutoresizingMaskIntoConstraints = false
         welcomeLabel.translatesAutoresizingMaskIntoConstraints = false
-        profileImageButton.translatesAutoresizingMaskIntoConstraints = false
+        profileImage.translatesAutoresizingMaskIntoConstraints = false
         
         containerView.backgroundColor = ThemeColor.blue1
+        containerView.isUserInteractionEnabled = true
+        containerView.addGestureRecognizer(profileClick)
         
         let userName = "최서윤" // 서버 통신해서 이름, 프로필 이미지가져오기
         let userImage = UIImage(systemName: "person")
@@ -50,11 +54,10 @@ extension HomeController {
         welcomeLabel.text = "Body Capture에 오신 것을 환영합니다!"
         welcomeLabel.textAlignment = .left
         
-        profileImageButton.frame = CGRect(x: 0, y: 0, width: 100, height: 100)
-        profileImageButton.setBackgroundImage(userImage, for: .normal) //서버와 통신
-        profileImageButton.addTarget(self, action: #selector(profileImageTapped), for: .touchUpInside)
+        profileImage.frame = CGRect(x: 0, y: 0, width: 100, height: 100)
+        profileImage.image = userImage
         
-        containerView.addSubview(profileImageButton)
+        containerView.addSubview(profileImage)
         containerView.addSubview(greetingLabel)
         containerView.addSubview(welcomeLabel)
         
@@ -68,26 +71,30 @@ extension HomeController {
             containerView.heightAnchor.constraint(equalToConstant: 120),
             
             // 프로필 이미지 버튼의 제약 조건
-            profileImageButton.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 20),
-            profileImageButton.centerYAnchor.constraint(equalTo: containerView.centerYAnchor),
-            profileImageButton.widthAnchor.constraint(equalToConstant: 50),
-            profileImageButton.heightAnchor.constraint(equalToConstant: 50),
+            profileImage.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 20),
+            profileImage.centerYAnchor.constraint(equalTo: containerView.centerYAnchor),
+            profileImage.widthAnchor.constraint(equalToConstant: 50),
+            profileImage.heightAnchor.constraint(equalToConstant: 50),
             
             // 첫 번째 레이블의 제약 조건
-            greetingLabel.leadingAnchor.constraint(equalTo: profileImageButton.trailingAnchor, constant: 20),
-            greetingLabel.centerYAnchor.constraint(equalTo: profileImageButton.centerYAnchor, constant: -10),
+            greetingLabel.leadingAnchor.constraint(equalTo: profileImage.trailingAnchor, constant: 20),
+            greetingLabel.centerYAnchor.constraint(equalTo: profileImage.centerYAnchor, constant: -10),
             
             // 두 번째 레이블의 제약 조건
-            welcomeLabel.leadingAnchor.constraint(equalTo: profileImageButton.trailingAnchor, constant: 20),
+            welcomeLabel.leadingAnchor.constraint(equalTo: profileImage.trailingAnchor, constant: 20),
             welcomeLabel.topAnchor.constraint(equalTo: greetingLabel.bottomAnchor, constant: 10),
         ])
     }
     //MARK: - dday
     func configureDdayView() {
+        let ddayClick = UITapGestureRecognizer(target: self, action: #selector(ddayTapped))
+        containerDdayView.addGestureRecognizer(ddayClick)
+        
         containerDdayView.translatesAutoresizingMaskIntoConstraints = false
         ddayLabel.translatesAutoresizingMaskIntoConstraints = false
         
         containerDdayView.backgroundColor = ThemeColor.blue1
+        
         
         var dday = 365 //서버 통신
         ddayLabel.text = "D-\(dday)"
@@ -113,6 +120,7 @@ extension HomeController {
         
         
         containerDdayView.addSubview(ddayLabel)
+        containerDdayView.addSubview(directionLabel)
         view.addSubview(containerDdayView)
         
         NSLayoutConstraint.activate([
@@ -122,9 +130,21 @@ extension HomeController {
             containerDdayView.heightAnchor.constraint(equalToConstant: 120),
             
             ddayLabel.centerYAnchor.constraint(equalTo: containerDdayView.centerYAnchor),
-            ddayLabel.centerXAnchor.constraint(equalTo: containerDdayView.centerXAnchor)
+            ddayLabel.centerXAnchor.constraint(equalTo: containerDdayView.centerXAnchor),
+            
+            directionLabel.centerXAnchor.constraint(equalTo: containerDdayView.centerXAnchor),
+            directionLabel.topAnchor.constraint(equalTo: ddayLabel.bottomAnchor, constant: 2)
+            
         ])
     }
+    
+    
+    @objc func ddayTapped() {
+        let myplanVC = MyPlanController()
+        self.present(myplanVC, animated: true, completion: nil)
+        myplanVC.modalPresentationStyle = .fullScreen
+    }
+    
     //MARK: - 스토어 4개 카테고리
     func configureStoreUI() {
         let titles = ["Studio", "Makeup", "Hairshop", "Package"]
@@ -193,4 +213,6 @@ extension HomeController: CustomButtonViewDelegate {
             button.isSelected = (button.tag == selectedButtonTag)
         }
     }
+    
+
 }

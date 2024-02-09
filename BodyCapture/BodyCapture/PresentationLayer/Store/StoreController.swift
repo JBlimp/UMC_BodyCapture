@@ -54,3 +54,13 @@ class StoreController: UIViewController {
     
 
 }
+
+//#if DEBUG
+//import SwiftUI
+//
+//struct VCPreView: PreviewProvider {
+//    static var previews: some View {
+//        StoreController().toPreview()
+//    }
+//}
+//#endif

@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		1C00AE032B6A5397001A916D /* HeartController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C00AE022B6A5397001A916D /* HeartController.swift */; };
+		1C397F202B75FEC20074DB2C /* DGCharts in Frameworks */ = {isa = PBXBuildFile; productRef = 1C397F1F2B75FEC20074DB2C /* DGCharts */; };
+		1C397F222B76035A0074DB2C /* MyPlanController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C397F212B76035A0074DB2C /* MyPlanController.swift */; };
 		1C403ED42B62101D00D11507 /* ThemeColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C403ED32B62101D00D11507 /* ThemeColor.swift */; };
 		1C403ED82B62223B00D11507 /* MainTabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C403ED72B62223B00D11507 /* MainTabController.swift */; };
 		1C403EDB2B622CCC00D11507 /* KakaoSDK in Frameworks */ = {isa = PBXBuildFile; productRef = 1C403EDA2B622CCC00D11507 /* KakaoSDK */; };
@@ -59,6 +61,7 @@
 
 /* Begin PBXFileReference section */
 		1C00AE022B6A5397001A916D /* HeartController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeartController.swift; sourceTree = "<group>"; };
+		1C397F212B76035A0074DB2C /* MyPlanController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPlanController.swift; sourceTree = "<group>"; };
 		1C403ED32B62101D00D11507 /* ThemeColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeColor.swift; sourceTree = "<group>"; };
 		1C403ED72B62223B00D11507 /* MainTabController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabController.swift; sourceTree = "<group>"; };
 		1C403EF32B63A10000D11507 /* HomeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
@@ -100,6 +103,7 @@
 				1C403EE12B622CCC00D11507 /* KakaoSDKUser in Frameworks */,
 				1C403EDB2B622CCC00D11507 /* KakaoSDK in Frameworks */,
 				1C403EDF2B622CCC00D11507 /* KakaoSDKCommon in Frameworks */,
+				1C397F202B75FEC20074DB2C /* DGCharts in Frameworks */,
 				1C403EDD2B622CCC00D11507 /* KakaoSDKAuth in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -161,6 +165,7 @@
 			children = (
 				1C403EF32B63A10000D11507 /* HomeController.swift */,
 				1C8A62042B720F7B00A0B30A /* HomeController+Layout.swift */,
+				1C397F212B76035A0074DB2C /* MyPlanController.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -252,6 +257,7 @@
 				1C403EDE2B622CCC00D11507 /* KakaoSDKCommon */,
 				1C403EE02B622CCC00D11507 /* KakaoSDKUser */,
 				3FCB40942B66763E00EC594A /* GoogleSignIn */,
+				1C397F1F2B75FEC20074DB2C /* DGCharts */,
 			);
 			productName = BodyCapture;
 			productReference = 3F5C655E2B60B09E006E1D99 /* BodyCapture.app */;
@@ -328,6 +334,7 @@
 			packageReferences = (
 				1C403ED92B622CCC00D11507 /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */,
 				3FCB40932B66763E00EC594A /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
+				1C397F1E2B75FEC20074DB2C /* XCRemoteSwiftPackageReference "Charts" */,
 			);
 			productRefGroup = 3F5C655F2B60B09E006E1D99 /* Products */;
 			projectDirPath = "";
@@ -384,6 +391,7 @@
 				1C403ED82B62223B00D11507 /* MainTabController.swift in Sources */,
 				1C403EFE2B63A2A300D11507 /* AppleAuthenticateUserUseCase.swift in Sources */,
 				3FB1F32E2B72744800265514 /* UIViewPreview.swift in Sources */,
+				1C397F222B76035A0074DB2C /* MyPlanController.swift in Sources */,
 				1C89A2B62B6F5B2B00953264 /* EditProfileViewController.swift in Sources */,
 				1C403EFD2B63A2A300D11507 /* User.swift in Sources */,
 				3F5C65622B60B09E006E1D99 /* AppDelegate.swift in Sources */,
@@ -750,6 +758,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		1C397F1E2B75FEC20074DB2C /* XCRemoteSwiftPackageReference "Charts" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/danielgindi/Charts";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
 		1C403ED92B622CCC00D11507 /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/kakao/kakao-ios-sdk";
@@ -769,6 +785,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		1C397F1F2B75FEC20074DB2C /* DGCharts */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1C397F1E2B75FEC20074DB2C /* XCRemoteSwiftPackageReference "Charts" */;
+			productName = DGCharts;
+		};
 		1C403EDA2B622CCC00D11507 /* KakaoSDK */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 1C403ED92B622CCC00D11507 /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */;

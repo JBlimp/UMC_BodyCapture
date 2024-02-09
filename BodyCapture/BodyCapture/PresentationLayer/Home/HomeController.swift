@@ -9,10 +9,18 @@ class HomeController: UIViewController {
     let containerView = UIView()
     let greetingLabel = UILabel()
     let welcomeLabel = UILabel()
-    lazy var profileImageButton = UIButton()
+    lazy var profileImage = UIImageView()
+    
     // dday components
     let containerDdayView = UIView()
     let ddayLabel = UILabel()
+    let directionLabel = {
+        let dl = UILabel()
+        dl.text = "내 예약 자세히 보기"
+        dl.translatesAutoresizingMaskIntoConstraints = false
+        dl.font = UIFont.systemFont(ofSize: 14)
+        return dl
+    }()
     // "스토어 둘러보기" 텍스트
     let text1 = {
         let t = UILabel()
@@ -95,7 +103,7 @@ class HomeController: UIViewController {
         
     }
     
-    @objc func profileImageTapped() {
+    @objc func profileTapped() {
         let editVC = EditProfileViewController()
         navigationController?.pushViewController(editVC, animated: true)
     }
