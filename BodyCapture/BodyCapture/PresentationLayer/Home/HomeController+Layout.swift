@@ -194,7 +194,7 @@ extension HomeController {
     
     
 }
-
+//라디오 버튼 구현
 extension HomeController: CustomButtonViewDelegate {
     func customButtonViewTapped(_ view: CustomButtonView) {
         print("Button tapped: \(view.tag)")
@@ -205,6 +205,10 @@ extension HomeController: CustomButtonViewDelegate {
         print("Radio button tapped: \(sender.tag)")
         selectedButtonTag = sender.tag
         updateButtonSelectionStates()
+        UserDefaults.standard.set(sender.tag, forKey: "SelectedButtonTag")
+        if let tabBarController = self.tabBarController {
+            tabBarController.selectedIndex = 1
+        }
     }
 
     func updateButtonSelectionStates() {
@@ -212,6 +216,4 @@ extension HomeController: CustomButtonViewDelegate {
             button.isSelected = (button.tag == selectedButtonTag)
         }
     }
-    
-
 }

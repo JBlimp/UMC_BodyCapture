@@ -93,6 +93,7 @@ class HomeController: UIViewController {
             text2.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10)
         ])
         configureStatusUI()
+        
     }
 
     

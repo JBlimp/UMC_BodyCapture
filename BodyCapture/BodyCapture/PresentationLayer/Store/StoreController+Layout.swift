@@ -68,14 +68,15 @@ extension StoreController {
 extension StoreController: CustomButtonViewDelegate {
     // CustomButtonViewDelegate 메서드 구현
     func customButtonViewTapped(_ view: CustomButtonView) {
+        print("Button tapped: \(view.tag)")
+        radioButtonTapped(view)
+        
         companyInfoRepository.fetchCompanyInfos(categoryIndex: view.tag) { [weak self] newCompanyInfos in
             DispatchQueue.main.async {
                 guard let self = self else {return}
                 self.storeCollection.reloadData()
                 
                 if newCompanyInfos.isEmpty {
-                    // Handle the scenario where no data is returned or an error occurs
-                    // For example, you might load some default data here
                     print("No company info was fetched. Handling fallback scenario.")
                 } else {
                     self.companyInfos = newCompanyInfos
@@ -96,6 +97,7 @@ extension StoreController: CustomButtonViewDelegate {
         }
     }
 }
+//MARK: - collectionView 구현
 
 extension StoreController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
@@ -119,8 +121,17 @@ extension StoreController: UICollectionViewDataSource, UICollectionViewDelegateF
     
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: collectionView.frame.width / 2, height: collectionView.frame.height / 2)
+        let paddingSpace = sectionInsets.left * (itemsPerRow + 1)
+        let availableWidth = collectionView.frame.width - paddingSpace
+        let widthPerItem = availableWidth / itemsPerRow
+
+        let paddingHeight = sectionInsets.top * (itemsPerColumn + 1)
+        let availableHeight = collectionView.frame.height - paddingHeight - (sectionInsets.bottom * (itemsPerColumn + 1))
+        let heightPerItem = availableHeight / itemsPerColumn
+
+        return CGSize(width: widthPerItem, height: heightPerItem)
     }
+
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         return sectionInsets

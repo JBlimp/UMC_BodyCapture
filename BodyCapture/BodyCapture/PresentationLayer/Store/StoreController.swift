@@ -54,24 +54,47 @@ class StoreController: UIViewController {
         collectionView.showsHorizontalScrollIndicator = false // 수평 스크롤 인디케이터 비활성화
         return collectionView
     }()
-    
+    //MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("StoreController viewDidLoad")
         configureNaviBarUI()
         configureStoreUI()
         configureStoreCollection()
     }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        // UserDefaults에서 선택된 버튼의 태그를 읽어옴
+        if let selectedTag = UserDefaults.standard.value(forKey: "SelectedButtonTag") as? Int {
+            updateSelectedButton(to: selectedTag)
+            loadCompanyInfos(forCategoryIndex: selectedTag)
+        }
+    }
+    func updateSelectedButton(to tag: Int) {
+        for case let button as CustomButtonView in buttonsStackView.arrangedSubviews {
+            button.isSelected = (button.tag == tag)
+        }
+        
+    }
     
+    func loadCompanyInfos(forCategoryIndex index: Int) {
+        companyInfoRepository.fetchCompanyInfos(categoryIndex: index) { [weak self] newCompanyInfos in
+            DispatchQueue.main.async {
+                guard let self = self else {return}
+                self.companyInfos = newCompanyInfos
+                self.storeCollection.reloadData()
+
+                if newCompanyInfos.isEmpty {
+                    print("No company info was fetched. Handling fallback scenario.")
+                }
+            }
+        }
+    }
     func configureNaviBarUI() {
         self.navigationItem.searchController = searchController
         self.navigationItem.title = "업체"
-//        searchController.searchBar.scopeButtonTitles = [
-//          "촬영", "메이크업", "헤어", "패키지"
-//        ]
-//        searchController.searchBar.showsScopeBar = true
     }
-    
-
 }
 
 //#if DEBUG
