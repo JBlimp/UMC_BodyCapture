@@ -4,6 +4,8 @@ import Kingfisher
 class CompanyInfoCell: UICollectionViewCell {
     static let identifier = "CompanyInfoCell"
     
+    var onTap: (() -> Void)?
+
     private let photoImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
@@ -13,7 +15,7 @@ class CompanyInfoCell: UICollectionViewCell {
     
     private let nameLabel: UILabel = {
         let label = UILabel()
-        // Additional label styling
+        label.textAlignment = .center
         return label
     }()
     
@@ -21,7 +23,7 @@ class CompanyInfoCell: UICollectionViewCell {
     
     private let priceLabel: UILabel = {
         let label = UILabel()
-        // Additional label styling
+        label.textAlignment = .center
         return label
     }()
     
@@ -29,7 +31,7 @@ class CompanyInfoCell: UICollectionViewCell {
     
     private let ratingLabel: UILabel = {
         let label = UILabel()
-        // Additional label styling
+        label.textAlignment = .center
         return label
     }()
     
@@ -41,6 +43,8 @@ class CompanyInfoCell: UICollectionViewCell {
         contentView.addSubview(priceLabel)
         contentView.addSubview(ratingLabel)
         applyConstraints()
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap))
+        contentView.addGestureRecognizer(tapGesture)
     }
     
     required init?(coder: NSCoder) {
@@ -103,4 +107,8 @@ class CompanyInfoCell: UICollectionViewCell {
         ratingString.insert(attachmentString, at: 0)
         ratingLabel.attributedText = ratingString
     }
+    @objc private func handleTap() {
+        onTap?()
+    }
+
 }

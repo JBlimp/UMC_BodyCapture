@@ -109,6 +109,12 @@ extension StoreController: UICollectionViewDataSource, UICollectionViewDelegateF
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CompanyInfoCell.identifier, for: indexPath) as! CompanyInfoCell
         let companyInfo = companyInfos[indexPath.item]
         cell.configure(with: companyInfo)
+        
+        cell.onTap = {
+            if let url = companyInfo.storeURL {
+                UIApplication.shared.open(url)
+            }
+        }
         return cell
     }
     
