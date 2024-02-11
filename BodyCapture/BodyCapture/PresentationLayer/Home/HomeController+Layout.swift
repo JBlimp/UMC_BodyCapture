@@ -156,10 +156,10 @@ extension HomeController {
         buttonsStackView.spacing = 25
         buttonsStackView.translatesAutoresizingMaskIntoConstraints = false
         
-        for (title, image) in zip(titles, images) {
+        for (index, (title, image)) in zip(titles, images).enumerated() {
             let customButtonView = CustomButtonView(image: image, title: title)
-//            customButtonView.tag = index
-//            customButtonView.delegate = self
+            customButtonView.tag = index
+            customButtonView.delegate = self
             buttonsStackView.addArrangedSubview(customButtonView)
         }
         
@@ -206,7 +206,6 @@ extension HomeController: CustomButtonViewDelegate {
         selectedButtonTag = sender.tag
         updateButtonSelectionStates()
     }
-
 
     func updateButtonSelectionStates() {
         for case let button as CustomButtonView in buttonsStackView.arrangedSubviews {

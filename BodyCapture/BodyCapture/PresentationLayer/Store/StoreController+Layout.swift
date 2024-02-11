@@ -25,7 +25,7 @@ extension StoreController {
             buttonsStackView.addArrangedSubview(customButtonView)
         }
         
-
+        
         //layout
         containerStoreView.addSubview(buttonsStackView)
         view.addSubview(containerStoreView)
@@ -42,28 +42,96 @@ extension StoreController {
         ])
     }
     
+    //collectionview configure
+    func configureStoreCollection() {
+        view.addSubview(storeCollection)
+        storeCollection.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            storeCollection.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
+            storeCollection.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
+            storeCollection.topAnchor.constraint(equalTo: containerStoreView.bottomAnchor, constant: 10),
+            storeCollection.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -10)
+        ])
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal // 스크롤 방향을 수평으로 설정
+        layout.minimumLineSpacing = 0 // 아이템 간 간격을 0으로 설정
+        layout.minimumInteritemSpacing = 0 // 행 간 간격을 0으로 설정
+        storeCollection.collectionViewLayout = layout
+        storeCollection.isPagingEnabled = true // 페이징 활성화
+        storeCollection.backgroundColor = ThemeColor.blue1
+    }
+    
+    
+    
+}
+
+extension StoreController: CustomButtonViewDelegate {
+    // CustomButtonViewDelegate 메서드 구현
+    func customButtonViewTapped(_ view: CustomButtonView) {
+        companyInfoRepository.fetchCompanyInfos(categoryIndex: view.tag) { [weak self] newCompanyInfos in
+            DispatchQueue.main.async {
+                guard let self = self else {return}
+                self.storeCollection.reloadData()
+                
+                if newCompanyInfos.isEmpty {
+                    // Handle the scenario where no data is returned or an error occurs
+                    // For example, you might load some default data here
+                    print("No company info was fetched. Handling fallback scenario.")
+                } else {
+                    self.companyInfos = newCompanyInfos
+                }
+            }
+        }
+    }
+    
     @objc func radioButtonTapped(_ sender: CustomButtonView) {
         print("Radio button tapped: \(sender.tag)")
         selectedButtonTag = sender.tag
         updateButtonSelectionStates()
     }
-
-
+    
     func updateButtonSelectionStates() {
         for case let button as CustomButtonView in buttonsStackView.arrangedSubviews {
             button.isSelected = (button.tag == selectedButtonTag)
         }
     }
-    
-    //collectionview configure
-    func configureStoreCollection() {
-        
-    }
 }
 
-extension StoreController: CustomButtonViewDelegate {
-    func customButtonViewTapped(_ view: CustomButtonView) {
-        print("Button tapped: \(view.tag)")
-        radioButtonTapped(view)
+extension StoreController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return companyInfos.count
     }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CompanyInfoCell.identifier, for: indexPath) as! CompanyInfoCell
+        let companyInfo = companyInfos[indexPath.item]
+        cell.configure(with: companyInfo)
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        if indexPath.row == companyInfos.count - 1 { // Check if the last cell is being displayed
+            // Load more data and update the collection view
+        }
+    }
+    
+    
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: collectionView.frame.width / 2, height: collectionView.frame.height / 2)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return sectionInsets
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return minimumLineSpacing // 행 사이의 간격
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return minimumInteritemSpacing // 열 사이의 간격
+    }
+
 }

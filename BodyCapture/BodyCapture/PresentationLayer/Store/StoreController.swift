@@ -28,19 +28,38 @@ class StoreController: UIViewController {
             updateButtonSelectionStates()
         }
     }
+//MARK: - collectionView 구현하기
+    // 콜렉션 뷰 설정에 사용될 상수 정의
+     let itemsPerRow: CGFloat = 2
+     let itemsPerColumn: CGFloat = 2
+     let sectionInsets = UIEdgeInsets(top: 20.0, left: 20.0, bottom: 20.0, right: 20.0)
+     let minimumInteritemSpacing: CGFloat = 20.0
+     let minimumLineSpacing: CGFloat = 20.0
+    // 백엔드에서 가져오기
+    var companyInfos: [CompanyInfo] = []
+    var companyInfoRepository: CompanyInfoRepository = AlamofireCompanyInfoRepository()
     
-    let container = {
-        let c = UIView()
-        c.translatesAutoresizingMaskIntoConstraints = false
-        return c
+    lazy var storeCollection: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
+        layout.minimumLineSpacing = 0 // 아이템 간의 줄 간격을 0으로 설정
+        layout.minimumInteritemSpacing = 0 // 아이템 간의 간격을 0으로 설정
+        layout.sectionInset = .zero // 섹션 인셋을 0으로 설정
+        
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.register(CompanyInfoCell.self, forCellWithReuseIdentifier: CompanyInfoCell.identifier)
+        collectionView.dataSource = self
+        collectionView.delegate = self
+        collectionView.isPagingEnabled = true // 페이징 활성화
+        collectionView.showsHorizontalScrollIndicator = false // 수평 스크롤 인디케이터 비활성화
+        return collectionView
     }()
-    //var shopCollection = UICollectionView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configureNaviBarUI()
         configureStoreUI()
-        //configureStoreCollection()
+        configureStoreCollection()
     }
     
     func configureNaviBarUI() {
