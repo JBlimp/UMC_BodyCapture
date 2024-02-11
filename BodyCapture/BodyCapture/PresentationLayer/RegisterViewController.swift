@@ -20,8 +20,8 @@ class RegisterViewController : UIViewController {
     
     let nameField: UITextField = {
         let textField = UITextField()
-        textField.placeholder = "이름"
         textField.borderStyle = .roundedRect
+        textField.attributedPlaceholder = NSAttributedString(string: "이름", attributes: [NSAttributedString.Key.foregroundColor : UIColor(red: 0.51, green: 0.51, blue: 0.51, alpha: 1.00)])
         textField.layer.borderColor = UIColor.systemBlue.cgColor
         textField.layer.borderWidth = 0.5
         textField.layer.cornerRadius = 8
@@ -40,7 +40,7 @@ class RegisterViewController : UIViewController {
     let nicknameField: UITextField = {
         let nicknameField = UITextField()
         nicknameField.borderStyle = .roundedRect
-        nicknameField.placeholder = "닉네임"
+        nicknameField.attributedPlaceholder = NSAttributedString(string: "닉네임", attributes: [NSAttributedString.Key.foregroundColor : UIColor(red: 0.51, green: 0.51, blue: 0.51, alpha: 1.00)])
         nicknameField.layer.borderColor = UIColor.systemBlue.cgColor
         nicknameField.layer.borderWidth = 0.5
         nicknameField.layer.cornerRadius = 8
@@ -64,7 +64,8 @@ class RegisterViewController : UIViewController {
         birthdayField.layer.borderColor = UIColor.systemBlue.cgColor
         birthdayField.layer.borderWidth = 0.5
         birthdayField.setTitle(" 생년월일", for: .normal)
-        birthdayField.setTitleColor(.systemGray, for: .normal)
+        birthdayField.setTitleColor(UIColor(red: 0.51, green: 0.51, blue: 0.51, alpha: 1.00), for: .normal)
+        birthdayField.titleLabel?.font = UIFont.systemFont(ofSize: 16)
         birthdayField.contentHorizontalAlignment = .left
         birthdayField.addTarget(self, action: #selector(birthdayFieldTouchUp), for: .touchUpInside)
         return birthdayField
@@ -72,6 +73,7 @@ class RegisterViewController : UIViewController {
     
     let emailField: UITextField = {
         let emailField = UITextField()
+        emailField.attributedPlaceholder = NSAttributedString(string: "이메일", attributes: [NSAttributedString.Key.foregroundColor : UIColor(red: 0.51, green: 0.51, blue: 0.51, alpha: 1.00)])
         emailField.borderStyle = .roundedRect
         emailField.isUserInteractionEnabled = false
         emailField.layer.borderColor = UIColor.systemBlue.cgColor
@@ -104,16 +106,17 @@ class RegisterViewController : UIViewController {
         return agreeBoxLine
     }()
     
-    let allAgreeSwitch = UISwitch()
-    let overFourteenSwitch = UISwitch()
-    let termsOfServiceSwitch = UISwitch()
-    let privacyPolicySwitch = UISwitch()
-    let marketingSwitch = UISwitch()
+    let allAgreeSwitch = CheckBox()
+    let overFourteenSwitch = CheckBox()
+    let termsOfServiceSwitch = CheckBox()
+    let privacyPolicySwitch = CheckBox()
+    let marketingSwitch = CheckBox()
     let detailButton1: UIButton = {
         let detailButton = UIButton()
         detailButton.backgroundColor = .clear
         detailButton.setTitle("자세히보기", for: .normal)
-        detailButton.titleLabel?.font = UIFont.systemFont(ofSize: 13)
+        detailButton.setTitleColor(UIColor.systemGray, for: .normal)
+        detailButton.titleLabel?.font = UIFont.systemFont(ofSize: 9)
         detailButton.addTarget(self, action: #selector(detailButton1Tapped), for: .touchUpInside)
         return detailButton
     }()
@@ -122,16 +125,18 @@ class RegisterViewController : UIViewController {
         let detailButton = UIButton()
         detailButton.backgroundColor = .clear
         detailButton.setTitle("자세히보기", for: .normal)
-        detailButton.titleLabel?.font = UIFont.systemFont(ofSize: 13)
+        detailButton.setTitleColor(UIColor.systemGray, for: .normal)
+        detailButton.titleLabel?.font = UIFont.systemFont(ofSize: 9)
         detailButton.addTarget(self, action: #selector(detailButton2Tapped), for: .touchUpInside)
         return detailButton
     }()
     
     let signUpButton: UIButton = {
         let signUpButton = UIButton()
-        signUpButton.backgroundColor = UIColor.systemGray
+        signUpButton.backgroundColor = UIColor(red: 0.31, green: 0.58, blue: 0.98, alpha: 1.00)
         signUpButton.setTitle("회원가입", for: .normal)
-        signUpButton.layer.cornerRadius = 0.5
+        signUpButton.titleLabel?.font = UIFont.systemFont(ofSize: 20)
+        signUpButton.layer.cornerRadius = 8
         signUpButton.clipsToBounds = true
         signUpButton.addTarget(self, action: #selector(signUpButtonTapped), for: .touchUpInside)
         signUpButton.isEnabled = false
@@ -267,6 +272,8 @@ class RegisterViewController : UIViewController {
             
             allAgreeSwitch.topAnchor.constraint(equalTo: agreeBox.topAnchor, constant: 10),
             allAgreeSwitch.leftAnchor.constraint(equalTo: agreeBox.leftAnchor, constant: 13),
+            allAgreeSwitch.heightAnchor.constraint(equalToConstant: 15),
+            allAgreeSwitch.widthAnchor.constraint(equalToConstant: 15),
             
             allAgreeText.leftAnchor.constraint(equalTo: allAgreeSwitch.rightAnchor, constant: 4),
             allAgreeText.centerYAnchor.constraint(equalTo: allAgreeSwitch.centerYAnchor),
@@ -280,14 +287,59 @@ class RegisterViewController : UIViewController {
             
             overFourteenSwitch.topAnchor.constraint(equalTo: agreeBoxLine.bottomAnchor, constant: 9),
             overFourteenSwitch.leftAnchor.constraint(equalTo: agreeBox.leftAnchor, constant: 13),
+            overFourteenSwitch.heightAnchor.constraint(equalToConstant: 15),
+            overFourteenSwitch.widthAnchor.constraint(equalToConstant: 15),
             
             overFourteenText.leftAnchor.constraint(equalTo: overFourteenSwitch.rightAnchor, constant: 4),
             overFourteenText.centerYAnchor.constraint(equalTo: overFourteenSwitch.centerYAnchor),
             overFourteenText.heightAnchor.constraint(equalToConstant: 20),
-            overFourteenText.widthAnchor.constraint(equalToConstant: 100),
+            overFourteenText.widthAnchor.constraint(equalToConstant: 150),
             
-            termsOfServiceSwitch.topAnchor.constraint(equalTo: overFourteenSwitch.bottomAnchor, constant: 8)
+            termsOfServiceSwitch.topAnchor.constraint(equalTo: overFourteenSwitch.bottomAnchor, constant: 8),
+            termsOfServiceSwitch.leftAnchor.constraint(equalTo: agreeBox.leftAnchor, constant: 13),
+            termsOfServiceSwitch.heightAnchor.constraint(equalToConstant: 15),
+            termsOfServiceSwitch.widthAnchor.constraint(equalToConstant: 15),
             
+            termsofServiceText.leftAnchor.constraint(equalTo: termsOfServiceSwitch.rightAnchor, constant: 4),
+            termsofServiceText.centerYAnchor.constraint(equalTo: termsOfServiceSwitch.centerYAnchor),
+            termsofServiceText.heightAnchor.constraint(equalToConstant: 20),
+            termsofServiceText.widthAnchor.constraint(equalToConstant: 150),
+            
+            detailButton1.centerYAnchor.constraint(equalTo: termsofServiceText.centerYAnchor),
+            detailButton1.rightAnchor.constraint(equalTo: agreeBox.rightAnchor, constant: -10),
+            detailButton1.widthAnchor.constraint(equalToConstant: 46),
+            detailButton1.heightAnchor.constraint(equalToConstant: 12),
+            
+            privacyPolicySwitch.topAnchor.constraint(equalTo: termsOfServiceSwitch.bottomAnchor, constant: 8),
+            privacyPolicySwitch.leftAnchor.constraint(equalTo: agreeBox.leftAnchor, constant: 13),
+            privacyPolicySwitch.heightAnchor.constraint(equalToConstant: 15),
+            privacyPolicySwitch.widthAnchor.constraint(equalToConstant: 15),
+            
+            privacyPolicyText.leftAnchor.constraint(equalTo: privacyPolicySwitch.rightAnchor, constant: 4),
+            privacyPolicyText.centerYAnchor.constraint(equalTo: privacyPolicySwitch.centerYAnchor),
+            privacyPolicyText.heightAnchor.constraint(equalToConstant: 20),
+            privacyPolicyText.widthAnchor.constraint(equalToConstant: 200),
+            
+            detailButton2.centerYAnchor.constraint(equalTo: privacyPolicyText.centerYAnchor),
+            detailButton2.rightAnchor.constraint(equalTo: agreeBox.rightAnchor, constant: -10),
+            detailButton2.widthAnchor.constraint(equalToConstant: 46),
+            detailButton2.heightAnchor.constraint(equalToConstant: 12),
+            
+            
+            marketingSwitch.topAnchor.constraint(equalTo: privacyPolicySwitch.bottomAnchor, constant: 8),
+            marketingSwitch.leftAnchor.constraint(equalTo: agreeBox.leftAnchor, constant: 13),
+            marketingSwitch.heightAnchor.constraint(equalToConstant: 15),
+            marketingSwitch.widthAnchor.constraint(equalToConstant: 15),
+            
+            marketingText.leftAnchor.constraint(equalTo: marketingSwitch.rightAnchor, constant: 4),
+            marketingText.centerYAnchor.constraint(equalTo: marketingSwitch.centerYAnchor),
+            marketingText.heightAnchor.constraint(equalToConstant: 20),
+            marketingText.widthAnchor.constraint(equalToConstant: 200),
+            
+            signUpButton.heightAnchor.constraint(equalToConstant: 40),
+            signUpButton.topAnchor.constraint(equalTo: agreeBox.bottomAnchor, constant: 20),
+            signUpButton.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor, constant: 34),
+            signUpButton.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor, constant: -38)
         ])
     }
     
@@ -351,4 +403,3 @@ class RegisterViewController : UIViewController {
     }
     
 }
-

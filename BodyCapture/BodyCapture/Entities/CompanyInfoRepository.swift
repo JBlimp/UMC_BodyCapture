@@ -6,8 +6,9 @@ protocol CompanyInfoRepository {
     func fetchCompanyInfos(categoryIndex: Int, completion: @escaping ([CompanyInfo]) -> Void)
 }
 
+//찜한 스토어 목록도 여기서 받아오게 코드 수정함
 class AlamofireCompanyInfoRepository: CompanyInfoRepository {
-    let titles = ["Studio", "Makeup", "Hairshop", "Package"]
+    let titles = ["Studio", "Makeup", "Hairshop", "Package", "Heart"]
     
     let ex :[CompanyInfo] = [
         CompanyInfo(name: "Company A", imageURL: nil, storeURL: URL(string: "https://www.naver.com"), price: "$100", rating: 4.5),

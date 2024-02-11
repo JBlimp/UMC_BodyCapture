@@ -39,6 +39,8 @@
 		3F5C65832B60B0A1006E1D99 /* BodyCaptureUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5C65822B60B0A1006E1D99 /* BodyCaptureUITests.swift */; };
 		3F5C65852B60B0A1006E1D99 /* BodyCaptureUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5C65842B60B0A1006E1D99 /* BodyCaptureUITestsLaunchTests.swift */; };
 		3FB1F32E2B72744800265514 /* UIViewPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB1F32D2B72744800265514 /* UIViewPreview.swift */; };
+		3FB1F3332B78CE5A00265514 /* CheckBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB1F3322B78CE5A00265514 /* CheckBox.swift */; };
+		3FB1F3452B79088700265514 /* HeartControllerStoreExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB1F3442B79088700265514 /* HeartControllerStoreExtension.swift */; };
 		3FCB40952B66763E00EC594A /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = 3FCB40942B66763E00EC594A /* GoogleSignIn */; };
 		3FCB409E2B6A58A100EC594A /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCB409D2B6A58A100EC594A /* RegisterViewController.swift */; };
 		3FCB40A02B6D077700EC594A /* sendUserDataToServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCB409F2B6D077700EC594A /* sendUserDataToServer.swift */; };
@@ -93,6 +95,8 @@
 		3F5C65822B60B0A1006E1D99 /* BodyCaptureUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BodyCaptureUITests.swift; sourceTree = "<group>"; };
 		3F5C65842B60B0A1006E1D99 /* BodyCaptureUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BodyCaptureUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		3FB1F32D2B72744800265514 /* UIViewPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewPreview.swift; sourceTree = "<group>"; };
+		3FB1F3322B78CE5A00265514 /* CheckBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckBox.swift; sourceTree = "<group>"; };
+		3FB1F3442B79088700265514 /* HeartControllerStoreExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeartControllerStoreExtension.swift; sourceTree = "<group>"; };
 		3FCB408A2B638D2100EC594A /* BodyCapture.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BodyCapture.entitlements; sourceTree = "<group>"; };
 		3FCB409D2B6A58A100EC594A /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		3FCB409F2B6D077700EC594A /* sendUserDataToServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = sendUserDataToServer.swift; sourceTree = "<group>"; };
@@ -137,7 +141,7 @@
 				1C8A62062B72165300A0B30A /* CustomStoreButtonView.swift */,
 				1C8A62082B721F1A00A0B30A /* Store */,
 				1C8A62032B720F1300A0B30A /* Home */,
-				1C00AE022B6A5397001A916D /* HeartController.swift */,
+				3FB1F3352B78DB2700265514 /* Heart */,
 				3F5C65652B60B09E006E1D99 /* LoginViewController.swift */,
 				1C403ED72B62223B00D11507 /* MainTabController.swift */,
 				3FCB409D2B6A58A100EC594A /* RegisterViewController.swift */,
@@ -152,6 +156,7 @@
 				1C403EFA2B63A2A300D11507 /* User.swift */,
 				1CED9B2A2B73648B00C9FE46 /* Company.swift */,
 				1CB2E1812B771FA100A7B519 /* CompanyInfoRepository.swift */,
+				1CB2E17F2B77187400A7B519 /* CompanyInfoCell.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -182,7 +187,6 @@
 			children = (
 				1C403EF52B63A10800D11507 /* StoreController.swift */,
 				1C8A62092B7222D700A0B30A /* StoreController+Layout.swift */,
-				1CB2E17F2B77187400A7B519 /* CompanyInfoCell.swift */,
 			);
 			path = Store;
 			sourceTree = "<group>";
@@ -211,6 +215,7 @@
 			isa = PBXGroup;
 			children = (
 				3FCB408A2B638D2100EC594A /* BodyCapture.entitlements */,
+				3FB1F3312B78CE4300265514 /* Resource */,
 				1C403EF92B63A2A300D11507 /* Entities */,
 				1C403EFB2B63A2A300D11507 /* UseCases */,
 				1C403ED02B62050D00D11507 /* PresentationLayer */,
@@ -221,7 +226,6 @@
 				3F5C656C2B60B0A0006E1D99 /* LaunchScreen.storyboard */,
 				3F5C656F2B60B0A0006E1D99 /* Info.plist */,
 				1C403ED32B62101D00D11507 /* ThemeColor.swift */,
-				3FB1F32D2B72744800265514 /* UIViewPreview.swift */,
 			);
 			path = BodyCapture;
 			sourceTree = "<group>";
@@ -241,6 +245,24 @@
 				3F5C65842B60B0A1006E1D99 /* BodyCaptureUITestsLaunchTests.swift */,
 			);
 			path = BodyCaptureUITests;
+			sourceTree = "<group>";
+		};
+		3FB1F3312B78CE4300265514 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				3FB1F3322B78CE5A00265514 /* CheckBox.swift */,
+				3FB1F32D2B72744800265514 /* UIViewPreview.swift */,
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
+		3FB1F3352B78DB2700265514 /* Heart */ = {
+			isa = PBXGroup;
+			children = (
+				1C00AE022B6A5397001A916D /* HeartController.swift */,
+				3FB1F3442B79088700265514 /* HeartControllerStoreExtension.swift */,
+			);
+			path = Heart;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -397,12 +419,14 @@
 				3FCB409E2B6A58A100EC594A /* RegisterViewController.swift in Sources */,
 				3FCB40A22B6D0C1D00EC594A /* GoogleAuthenticateUserUseCase.swift in Sources */,
 				1C403EF42B63A10100D11507 /* HomeController.swift in Sources */,
+				3FB1F3332B78CE5A00265514 /* CheckBox.swift in Sources */,
 				3FCB40A02B6D077700EC594A /* sendUserDataToServer.swift in Sources */,
 				1C403ED82B62223B00D11507 /* MainTabController.swift in Sources */,
 				1C403EFE2B63A2A300D11507 /* AppleAuthenticateUserUseCase.swift in Sources */,
 				3FB1F32E2B72744800265514 /* UIViewPreview.swift in Sources */,
 				1C397F222B76035A0074DB2C /* MyPlanController.swift in Sources */,
 				1C89A2B62B6F5B2B00953264 /* EditProfileViewController.swift in Sources */,
+				3FB1F3452B79088700265514 /* HeartControllerStoreExtension.swift in Sources */,
 				1C403EFD2B63A2A300D11507 /* User.swift in Sources */,
 				1CB2E1822B771FA100A7B519 /* CompanyInfoRepository.swift in Sources */,
 				1CB2E1802B77187400A7B519 /* CompanyInfoCell.swift in Sources */,

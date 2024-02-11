@@ -27,19 +27,19 @@ extension UIViewController {
 #endif
 
 
-/*
- how to use
- 
- #if DEBUG
- import SwiftUI
 
- struct VCPreView: PreviewProvider {
-     static var previews: some View {
-         뷰컨 이름().toPreview()
-     }
- }
- #endif
+// how to use
+// 
+// #if DEBUG
+// import SwiftUI
+//
+// struct VCPreView: PreviewProvider {
+//     static var previews: some View {
+//         뷰컨 이름().toPreview()
+//     }
+// }
+// #endif
+// 
+// 뷰컨 이름 수정
+// 이 코드를 미리보기 원하는 뷰컨 가장 아래에 붙여넣기
  
- 뷰컨 이름 수정
- 이 코드를 미리보기 원하는 뷰컨 가장 아래에 붙여넣기
- */
