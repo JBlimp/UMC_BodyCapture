@@ -107,6 +107,7 @@ class CompanyInfoCell: UICollectionViewCell {
         ratingString.insert(attachmentString, at: 0)
         ratingLabel.attributedText = ratingString
     }
+    
     @objc private func handleTap() {
         onTap?()
     }
