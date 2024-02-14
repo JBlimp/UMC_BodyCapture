@@ -41,6 +41,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         isTokenValid { isValid in
             DispatchQueue.main.async {
                 if isValid {
+                    // 자동로그인시 유저 정보 백엔드에서 불러오는 로직 추가
                     // 토큰이 유효한 경우, MainTabController 표시
                     self.window?.rootViewController = MainTabController()
                 } else {

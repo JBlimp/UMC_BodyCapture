@@ -1,6 +1,8 @@
 import UIKit
 
 class HomeController: UIViewController {
+    //홈 컨트롤러 생성될때 User 정보 넘겨줘야함
+    var currentUser: User?
     // naviBar 컴포넌트 설정
     let customView = UIView()
     let imageView = UIImageView(image: UIImage(named: "homeNaviLogo"))
