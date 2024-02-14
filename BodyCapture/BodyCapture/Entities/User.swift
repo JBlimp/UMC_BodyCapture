@@ -7,4 +7,8 @@ struct User {
     var email: String?
     var token: String?
     var socialIsWhat: String?
+    var nickname: String?
+    var birthday: String?
+    var gender: String?
+    //var 동의내역
 }
