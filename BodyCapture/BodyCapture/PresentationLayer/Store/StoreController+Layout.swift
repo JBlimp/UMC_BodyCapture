@@ -53,9 +53,10 @@ extension StoreController {
             storeCollection.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -10)
         ])
         let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .horizontal // 스크롤 방향을 수평으로 설정
+        layout.scrollDirection = .vertical // 스크롤 방향을 수평으로 설정
         layout.minimumLineSpacing = 0 // 아이템 간 간격을 0으로 설정
         layout.minimumInteritemSpacing = 0 // 행 간 간격을 0으로 설정
+        layout.headerReferenceSize = CGSize(width: 100, height: 30)
         storeCollection.collectionViewLayout = layout
         storeCollection.isPagingEnabled = true // 페이징 활성화
         storeCollection.backgroundColor = ThemeColor.blue1
@@ -119,12 +120,18 @@ extension StoreController: UICollectionViewDataSource, UICollectionViewDelegateF
     }
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        if indexPath.row == companyInfos.count - 1 { // Check if the last cell is being displayed
-            // Load more data and update the collection view
-        }
+        if indexPath.row == companyInfos.count - 1 {         }
     }
     
-    
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        if kind == UICollectionView.elementKindSectionHeader {
+            let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: StoreCollectionHeader.identifier, for: indexPath) as! StoreCollectionHeader
+            header.delegate = self
+            return header
+        }
+        fatalError("Unexpected kind")
+    }
+
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let paddingSpace = sectionInsets.left * (itemsPerRow + 1)
@@ -152,3 +159,4 @@ extension StoreController: UICollectionViewDataSource, UICollectionViewDelegateF
     }
 
 }
+

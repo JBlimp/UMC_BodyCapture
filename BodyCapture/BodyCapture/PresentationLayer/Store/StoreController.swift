@@ -28,6 +28,8 @@ class StoreController: UIViewController {
             updateButtonSelectionStates()
         }
     }
+    
+    
 //MARK: - collectionView 구현하기
     // 콜렉션 뷰 설정에 사용될 상수 정의
      let itemsPerRow: CGFloat = 2
@@ -48,12 +50,14 @@ class StoreController: UIViewController {
         
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.register(CompanyInfoCell.self, forCellWithReuseIdentifier: CompanyInfoCell.identifier)
+        collectionView.register(StoreCollectionHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: StoreCollectionHeader.identifier)
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.isPagingEnabled = true // 페이징 활성화
         collectionView.showsHorizontalScrollIndicator = false // 수평 스크롤 인디케이터 비활성화
         return collectionView
     }()
+
     //MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -71,6 +75,7 @@ class StoreController: UIViewController {
             loadCompanyInfos(forCategoryIndex: selectedTag)
         }
     }
+    
     func updateSelectedButton(to tag: Int) {
         for case let button as CustomButtonView in buttonsStackView.arrangedSubviews {
             button.isSelected = (button.tag == tag)
@@ -96,13 +101,3 @@ class StoreController: UIViewController {
         self.navigationItem.title = "업체"
     }
 }
-
-//#if DEBUG
-//import SwiftUI
-//
-//struct VCPreView: PreviewProvider {
-//    static var previews: some View {
-//        StoreController().toPreview()
-//    }
-//}
-//#endif

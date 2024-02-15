@@ -21,6 +21,9 @@
 		1C403EFD2B63A2A300D11507 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C403EFA2B63A2A300D11507 /* User.swift */; };
 		1C403EFE2B63A2A300D11507 /* AppleAuthenticateUserUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C403EFC2B63A2A300D11507 /* AppleAuthenticateUserUseCase.swift */; };
 		1C403F002B65F3CF00D11507 /* KakaoAuthenticateUserUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C403EFF2B65F3CF00D11507 /* KakaoAuthenticateUserUseCase.swift */; };
+		1C7190B82B7E06C600FC023A /* StoreCollectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C7190B72B7E06C600FC023A /* StoreCollectionHeader.swift */; };
+		1C7190BA2B7E0D4B00FC023A /* StorePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C7190B92B7E0D4B00FC023A /* StorePickerView.swift */; };
+		1C7190BC2B7E1B9800FC023A /* PickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C7190BB2B7E1B9800FC023A /* PickerViewController.swift */; };
 		1C89A2B62B6F5B2B00953264 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C89A2B52B6F5B2B00953264 /* EditProfileViewController.swift */; };
 		1C8A62052B720F7B00A0B30A /* HomeController+Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C8A62042B720F7B00A0B30A /* HomeController+Layout.swift */; };
 		1C8A62072B72165300A0B30A /* CustomStoreButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C8A62062B72165300A0B30A /* CustomStoreButtonView.swift */; };
@@ -75,6 +78,9 @@
 		1C403EFA2B63A2A300D11507 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		1C403EFC2B63A2A300D11507 /* AppleAuthenticateUserUseCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppleAuthenticateUserUseCase.swift; sourceTree = "<group>"; };
 		1C403EFF2B65F3CF00D11507 /* KakaoAuthenticateUserUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KakaoAuthenticateUserUseCase.swift; sourceTree = "<group>"; };
+		1C7190B72B7E06C600FC023A /* StoreCollectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreCollectionHeader.swift; sourceTree = "<group>"; };
+		1C7190B92B7E0D4B00FC023A /* StorePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorePickerView.swift; sourceTree = "<group>"; };
+		1C7190BB2B7E1B9800FC023A /* PickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerViewController.swift; sourceTree = "<group>"; };
 		1C89A2B52B6F5B2B00953264 /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
 		1C8A62042B720F7B00A0B30A /* HomeController+Layout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HomeController+Layout.swift"; sourceTree = "<group>"; };
 		1C8A62062B72165300A0B30A /* CustomStoreButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomStoreButtonView.swift; sourceTree = "<group>"; };
@@ -190,6 +196,9 @@
 			children = (
 				1C403EF52B63A10800D11507 /* StoreController.swift */,
 				1C8A62092B7222D700A0B30A /* StoreController+Layout.swift */,
+				1C7190B72B7E06C600FC023A /* StoreCollectionHeader.swift */,
+				1C7190B92B7E0D4B00FC023A /* StorePickerView.swift */,
+				1C7190BB2B7E1B9800FC023A /* PickerViewController.swift */,
 			);
 			path = Store;
 			sourceTree = "<group>";
@@ -415,11 +424,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				1CED9B2B2B73648B00C9FE46 /* Company.swift in Sources */,
+				1C7190B82B7E06C600FC023A /* StoreCollectionHeader.swift in Sources */,
 				3F5C65662B60B09E006E1D99 /* LoginViewController.swift in Sources */,
 				1C8A62072B72165300A0B30A /* CustomStoreButtonView.swift in Sources */,
 				1C403F002B65F3CF00D11507 /* KakaoAuthenticateUserUseCase.swift in Sources */,
 				1C403ED42B62101D00D11507 /* ThemeColor.swift in Sources */,
 				3FCB409E2B6A58A100EC594A /* RegisterViewController.swift in Sources */,
+				1C7190BC2B7E1B9800FC023A /* PickerViewController.swift in Sources */,
 				3FCB40A22B6D0C1D00EC594A /* GoogleAuthenticateUserUseCase.swift in Sources */,
 				1C403EF42B63A10100D11507 /* HomeController.swift in Sources */,
 				3FB1F3332B78CE5A00265514 /* CheckBox.swift in Sources */,
@@ -435,6 +446,7 @@
 				1CB2E1822B771FA100A7B519 /* CompanyInfoRepository.swift in Sources */,
 				1CB2E1802B77187400A7B519 /* CompanyInfoCell.swift in Sources */,
 				3F5C65622B60B09E006E1D99 /* AppDelegate.swift in Sources */,
+				1C7190BA2B7E0D4B00FC023A /* StorePickerView.swift in Sources */,
 				1C8A620A2B7222D700A0B30A /* StoreController+Layout.swift in Sources */,
 				1C8A62052B720F7B00A0B30A /* HomeController+Layout.swift in Sources */,
 				1C00AE032B6A5397001A916D /* HeartController.swift in Sources */,
