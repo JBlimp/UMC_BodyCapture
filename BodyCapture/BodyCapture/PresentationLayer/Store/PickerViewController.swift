@@ -11,7 +11,8 @@ class PickerViewController: UIViewController {
     
     let cityTableView = UITableView()
     let districtTableView = UITableView()
-    
+    //정보 호출
+    var cancellables = Set<AnyCancellable>()
     var cityInfo: [CityInfo] = [] // 도시 정보 배열
     var districtsByCity: [DistrictInfo] = [] // 선택된 도시의 시/구 정보
     //정보 전달storeController로
@@ -61,24 +62,21 @@ class PickerViewController: UIViewController {
     
     //MARK: - data:::: API명세!!!
     func loadAllCityInfo() {
-        //        let dispatchGroup = DispatchGroup()
-        //
-        //        for city in cities {
-        //            dispatchGroup.enter()
-        //            // 서버로부터 해당 도시의 CompanyInfo 데이터를 비동기적으로 로드하는 가정
-        //            fetchCompanyInfosForCity(cityName: city) { [weak self] companyInfos in
-        //                // 서버로부터 데이터 로드 후, 도시별로 조직
-        //                guard let cityInfo = self?.cityInfoManager.organizeCompanyInfosByDistrict(companyInfos: companyInfos, for: city) else {return}
-        //
-        //                self?.cityInfo.append(cityInfo)
-        //
-        //                dispatchGroup.leave()
-        //            }
-        //        }
-        //
-        //        dispatchGroup.notify(queue: .main) {
-        //            self.cityTableView.reloadData()
-        //        }
+//        let publishers = cities.map { cityName in
+//                fetchCompanyInfosForCity(cityName: cityName)
+//                    .map { companyInfos -> CityInfo in
+//                        return self.cityInfoManager.organizeCompanyInfosByDistrict(companyInfos: companyInfos, for: cityName)
+//                    }
+//                    .catch { _ in Just(CityInfo.empty) } // 오류 처리
+//            }
+//            
+//            Publishers.MergeMany(publishers)
+//                .collect() // 모든 도시 정보를 수집
+//                .sink(receiveCompletion: { _ in }, receiveValue: { cityInfos in
+//                    self.cityInfo = cityInfos
+//                    self.cityTableView.reloadData()
+//                })
+//                .store(in: &cancellables) // 메모리 관리를 위해 cancellables에 저장
         //하드코딩
         cityInfo = [
             CityInfo(cityName: "서울", districts: [
@@ -104,21 +102,30 @@ class PickerViewController: UIViewController {
 }
 
 
-func fetchCompanyInfosForCity(cityName: String, completion: @escaping ([CompanyInfo]) -> Void) {
-    // 서버의 API (예를 들어, 도시 이름을 쿼리 파라미터로 사용)
-    let url = "https://yourserver.com/api/companyInfos?city=\(cityName)"
-    
-    // Alamofire를 사용하여 요청
-    AF.request(url).responseDecodable(of: [CompanyInfo].self) { response in
-        switch response.result {
-        case .success(let companyInfos):
-            completion(companyInfos)
-        case .failure(let error):
-            print("Error fetching company infos for city \(cityName): \(error)")
-            completion([]) //
+//func fetchCompanyInfosForCity(cityName: String, completion: @escaping ([CompanyInfo]) -> Void) {
+//    // 서버의 API (예를 들어, 도시 이름을 쿼리 파라미터로 사용)
+//    let url = "https://yourserver.com/api/companyInfos?city=\(cityName)"
+//    
+//    // Alamofire를 사용하여 요청
+//    AF.request(url).responseDecodable(of: [CompanyInfo].self) { response in
+//        switch response.result {
+//        case .success(let companyInfos):
+//            completion(companyInfos)
+//        case .failure(let error):
+//            print("Error fetching company infos for city \(cityName): \(error)")
+//            completion([]) //
+//        }
+//    }
+//}
+
+        func fetchCompanyInfosForCity(cityName: String) -> AnyPublisher<[CompanyInfo], AFError> {
+            let url = "https://yourserver.com/api/companyInfos?city=\(cityName)"
+            return AF.request(url)
+                .publishDecodable(type: [CompanyInfo].self)
+                .value() // `value`는 성공 응답만을 추출
+                .receive(on: DispatchQueue.main) // 메인 스레드에서 받기
+                .eraseToAnyPublisher() // 타입을 숨김 (AnyPublisher로 반환)
         }
-    }
-}
 
 
 //MARK: - delegate 2종류!!
