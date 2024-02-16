@@ -123,7 +123,33 @@ class StoreController: UIViewController {
                     
                     // 여기에서 필요한 UI 업데이트나 데이터 로딩 로직을 추가
                     print("선택된 도시: \(selectedCity), 선택된 지역: \(selectedDistricts)")
+                    // 필터링된 CompanyInfo 데이터 로딩 및 콜렉션 뷰 업데이트
+                    self?.loadFilteredCompanyInfos()
                 }
                 .store(in: &subscriptions)
+    }
+    
+    
+    func loadFilteredCompanyInfos() {
+        guard let selectedCity = selectedCity, !selectedDistricts.isEmpty else {
+                print("선택된 도시나 지역이 없습니다.")
+                return
+            }
+        
+        guard let cityInfo = pickerViewController.cityInfo.first(where: { $0.cityName == selectedCity }) else {
+                print("선택된 도시에 해당하는 정보를 찾을 수 없습니다.")
+                return
+            }
+
+        let filteredStores = cityInfo.districts
+            .filter { selectedDistricts.contains($0.districtName) }
+            .flatMap { $0.stores } // 모든 선택된 지역의 상점을 하나의 배열로 통합
+        
+        self.companyInfos = filteredStores
+        
+        DispatchQueue.main.async {
+            self.storeCollection.reloadData()
         }
+    }
+
 }
