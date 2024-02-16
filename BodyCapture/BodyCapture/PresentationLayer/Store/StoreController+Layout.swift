@@ -75,6 +75,7 @@ extension StoreController: CustomButtonViewDelegate {
         companyInfoRepository.fetchCompanyInfos(categoryIndex: view.tag) { [weak self] newCompanyInfos in
             DispatchQueue.main.async {
                 guard let self = self else {return}
+                
                 self.storeCollection.reloadData()
                 
                 if newCompanyInfos.isEmpty {

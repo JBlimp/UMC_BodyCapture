@@ -17,7 +17,7 @@ class AlamofireCompanyInfoRepository: CompanyInfoRepository {
         CompanyInfo(name: "Company D", imageURL: nil, storeURL: URL(string: "https://www.naver.com"), price: "$120", rating: 4.0, district: "용산구"),
         CompanyInfo(name: "Company E", imageURL: nil, storeURL: URL(string: "https://www.naver.com"), price: "$120", rating: 4.0, district: "해운대구")
     ]
-    
+//MARK: - API명세!!!!
     func fetchCompanyInfos(categoryIndex: Int, completion: @escaping ([CompanyInfo]) -> Void) {
         let category = titles[categoryIndex]
         let url = "https://yourserver.com/api/\(category)"
@@ -26,6 +26,7 @@ class AlamofireCompanyInfoRepository: CompanyInfoRepository {
             switch response.result {
             case .success(let companyInfos):
                 completion(companyInfos)
+                
             case .failure(let error):
                 print(error)
                 completion(self.ex)
@@ -33,5 +34,7 @@ class AlamofireCompanyInfoRepository: CompanyInfoRepository {
         }
         
     }
+    
+    
 
 }

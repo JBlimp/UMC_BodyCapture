@@ -46,9 +46,10 @@ class StoreCollectionHeader: UICollectionReusableView {
 
 extension StoreController: CollectionHeaderDelegate {
     func selectDistrictButtonTapped() {
-        let pickerViewController = PickerViewController()
-        pickerViewController.modalPresentationStyle = .pageSheet
+        if let presentationController = pickerViewController.presentationController as? UISheetPresentationController {
+                    presentationController.detents = [.medium()]
+                }
+        subscribeToPickerSelection()
         self.present(pickerViewController, animated: true)
     }
-    
 }

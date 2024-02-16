@@ -1,4 +1,5 @@
 import UIKit
+import Combine
 
 class StoreController: UIViewController {
     let searchController = UISearchController(searchResultsController: nil)
@@ -29,15 +30,17 @@ class StoreController: UIViewController {
         }
     }
     
+    private var subscriptions = Set<AnyCancellable>()
     
-//MARK: - collectionView 구현하기
+    //MARK: - collectionView 구현하기
     // 콜렉션 뷰 설정에 사용될 상수 정의
-     let itemsPerRow: CGFloat = 2
-     let itemsPerColumn: CGFloat = 2
-     let sectionInsets = UIEdgeInsets(top: 20.0, left: 20.0, bottom: 20.0, right: 20.0)
-     let minimumInteritemSpacing: CGFloat = 20.0
-     let minimumLineSpacing: CGFloat = 20.0
+    let itemsPerRow: CGFloat = 2
+    let itemsPerColumn: CGFloat = 2
+    let sectionInsets = UIEdgeInsets(top: 20.0, left: 20.0, bottom: 20.0, right: 20.0)
+    let minimumInteritemSpacing: CGFloat = 20.0
+    let minimumLineSpacing: CGFloat = 20.0
     // 백엔드에서 가져오기
+    
     var companyInfos: [CompanyInfo] = []
     var companyInfoRepository: CompanyInfoRepository = AlamofireCompanyInfoRepository()
     
@@ -57,7 +60,16 @@ class StoreController: UIViewController {
         collectionView.showsHorizontalScrollIndicator = false // 수평 스크롤 인디케이터 비활성화
         return collectionView
     }()
-
+    
+    lazy var pickerViewController: PickerViewController = {
+        let viewController = PickerViewController()
+        viewController.modalPresentationStyle = .pageSheet
+        return viewController
+    }()
+    
+    var selectedCity: String?
+    var selectedDistricts: [String] = []
+    
     //MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -65,6 +77,7 @@ class StoreController: UIViewController {
         configureNaviBarUI()
         configureStoreUI()
         configureStoreCollection()
+        subscribeToPickerSelection()
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -87,9 +100,10 @@ class StoreController: UIViewController {
         companyInfoRepository.fetchCompanyInfos(categoryIndex: index) { [weak self] newCompanyInfos in
             DispatchQueue.main.async {
                 guard let self = self else {return}
+                
                 self.companyInfos = newCompanyInfos
                 self.storeCollection.reloadData()
-
+                
                 if newCompanyInfos.isEmpty {
                     print("No company info was fetched. Handling fallback scenario.")
                 }
@@ -100,4 +114,16 @@ class StoreController: UIViewController {
         self.navigationItem.searchController = searchController
         self.navigationItem.title = "업체"
     }
+    
+    func subscribeToPickerSelection() {
+            pickerViewController.selectionPublisher
+                .sink { [weak self] selectedCity, selectedDistricts in
+                    self?.selectedCity = selectedCity
+                    self?.selectedDistricts = selectedDistricts
+                    
+                    // 여기에서 필요한 UI 업데이트나 데이터 로딩 로직을 추가
+                    print("선택된 도시: \(selectedCity), 선택된 지역: \(selectedDistricts)")
+                }
+                .store(in: &subscriptions)
+        }
 }
