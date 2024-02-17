@@ -6,6 +6,7 @@ import KakaoSDKAuth
 class KakaoAuthenticateUserUseCase {
     
     weak var viewController: UIViewController?
+    var newUser: User?
     
     func handleLoginSuccess(oauthToken: OAuthToken?) {
         UserApi.shared.me { [weak self] (user, error) in
@@ -13,7 +14,7 @@ class KakaoAuthenticateUserUseCase {
             if let error = error {
                 print(error)
             } else if let user = user, let oauthToken = oauthToken {
-                let newUser = User(
+                newUser = User(
                     identifier: String(user.id!),
                     fullName: user.kakaoAccount?.profile?.nickname,
                     email: user.kakaoAccount?.email,
@@ -23,7 +24,7 @@ class KakaoAuthenticateUserUseCase {
                 print("kakao user info: \(newUser)")
                 
                 UserDefaults.standard.set("kakao", forKey: "socialIsWhat")
-                self.navigateToNextScreen(with: newUser)
+                self.navigateToNextScreen(with: newUser!)
             }
         }
     }
@@ -31,8 +32,8 @@ class KakaoAuthenticateUserUseCase {
     func navigateToNextScreen(with user: User) {
         // 다음 화면으로 이동하는 로직
         if sendUserDataToServer().isUserExist(with: user) {
-            let nexttab = MainTabController()
-            nexttab.currentUser = user
+            let backendUser = sendUserDataToServer().returnUser(with: user)
+            let nexttab = MainTabController(user: backendUser)
             nexttab.modalPresentationStyle = .fullScreen
             viewController?.present(nexttab, animated: true, completion: nil)
         } else {

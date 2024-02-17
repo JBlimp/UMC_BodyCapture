@@ -21,8 +21,9 @@ class GoogleAuthenticateUserUseCase {
     func navigateToNextScreen(with user: User) {
         // 다음 화면으로 이동하는 로직
         if sendUserDataToServer().isUserExist(with: user) {
-            let nexttab = MainTabController()
-            nexttab.currentUser = user
+            let backendUser = sendUserDataToServer().returnUser(with: user)
+            let nexttab = MainTabController(user: backendUser)
+            nexttab.currentUser = backendUser
             nexttab.modalPresentationStyle = .fullScreen
             viewController?.present(nexttab, animated: true, completion: nil)
         } else {

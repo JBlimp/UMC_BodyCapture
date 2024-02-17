@@ -13,4 +13,9 @@ class sendUserDataToServer {
     func isUserExist(with user: User) -> Bool {
         return true
     }
+    
+    func returnUser(with user: User) -> User {
+        //일단 임시로 user 그대로 반환, 나중에 백엔드에서 정보 받아와서 User 완성시켜서 넘겨야함
+        return user
+    }
 }

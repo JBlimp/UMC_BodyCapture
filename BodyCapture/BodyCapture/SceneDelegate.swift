@@ -15,6 +15,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     weak var viewController: UIViewController?
     var window: UIWindow?
+    var currentUser: User?
 
     func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
         //kakao login
@@ -43,7 +44,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 if isValid {
                     // 자동로그인시 유저 정보 백엔드에서 불러오는 로직 추가
                     // 토큰이 유효한 경우, MainTabController 표시
-                    self.window?.rootViewController = MainTabController()
+                    self.window?.rootViewController = MainTabController(user: self.currentUser!)
                 } else {
                     // 토큰이 유효하지 않은 경우, LoginController를 표시
                     let loginController = LoginViewController()
@@ -78,7 +79,22 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                     }
                     else {
                         //토큰 유효성 체크 성공(필요 시 토큰 갱신됨)
-                        completion(true)
+                        // 로그인된 사용자의 정보를 가져옴
+                        UserApi.shared.me() { (user, error) in
+                            if let error = error {
+                                print("사용자 정보 요청 실패: \(error)")
+                            }
+                            else if let user = user {
+                                self.currentUser = User(
+                                    identifier: String(user.id!),
+                                    fullName: user.kakaoAccount?.profile?.nickname ?? "Unknown",
+                                    email: user.kakaoAccount?.email,
+                                    socialIsWhat: "kakao"
+                                )
+                                // user 객체를 활용하여 필요한 정보 사용
+                                completion(true)
+                            }
+                        }
                     }
                 }
             }
@@ -92,6 +108,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                     completion(false)
                 } else {
                     //로그인 상태
+                    self.currentUser = User(
+                        identifier: (user?.userID!)!,
+                        fullName: user?.profile?.name,
+                        email: user?.profile?.email,
+                        socialIsWhat: "google"
+                    )
                     completion(true)
                 }
             }

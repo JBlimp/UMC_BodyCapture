@@ -4,6 +4,8 @@ import Combine
 class StoreController: UIViewController {
     let searchController = UISearchController(searchResultsController: nil)
     
+    var currentUser: User?
+    
     // 스토어 카테고리
     let containerStoreView = {
         let cv = UIView()

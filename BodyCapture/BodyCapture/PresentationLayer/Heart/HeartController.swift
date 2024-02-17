@@ -3,6 +3,8 @@
 import UIKit
 
 class HeartController: UIViewController {
+    var currentUser: User?
+    
     lazy var pageSegmentControl: UISegmentedControl = {
         let segmentControl = UISegmentedControl(items: ["스토어", "후기"])
         segmentControl.selectedSegmentIndex = 0

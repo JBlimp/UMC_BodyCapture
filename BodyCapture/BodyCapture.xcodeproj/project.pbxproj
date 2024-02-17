@@ -154,10 +154,10 @@
 				1C8A62082B721F1A00A0B30A /* Store */,
 				1C8A62032B720F1300A0B30A /* Home */,
 				3FB1F3352B78DB2700265514 /* Heart */,
-				3F5C65652B60B09E006E1D99 /* LoginViewController.swift */,
+				3FB1F3482B7F6A5A00265514 /* MyPage */,
 				1C403ED72B62223B00D11507 /* MainTabController.swift */,
+				3F5C65652B60B09E006E1D99 /* LoginViewController.swift */,
 				3FCB409D2B6A58A100EC594A /* RegisterViewController.swift */,
-				1C89A2B52B6F5B2B00953264 /* EditProfileViewController.swift */,
 			);
 			path = PresentationLayer;
 			sourceTree = "<group>";
@@ -191,7 +191,6 @@
 			children = (
 				1C403EF32B63A10000D11507 /* HomeController.swift */,
 				1C8A62042B720F7B00A0B30A /* HomeController+Layout.swift */,
-				1C397F212B76035A0074DB2C /* MyPlanController.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -281,6 +280,15 @@
 				3FB1F3442B79088700265514 /* HeartControllerStoreExtension.swift */,
 			);
 			path = Heart;
+			sourceTree = "<group>";
+		};
+		3FB1F3482B7F6A5A00265514 /* MyPage */ = {
+			isa = PBXGroup;
+			children = (
+				1C89A2B52B6F5B2B00953264 /* EditProfileViewController.swift */,
+				1C397F212B76035A0074DB2C /* MyPlanController.swift */,
+			);
+			path = MyPage;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
