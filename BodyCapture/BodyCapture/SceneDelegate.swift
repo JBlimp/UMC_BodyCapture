@@ -110,7 +110,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                     //로그인 상태
                     self.currentUser = User(
                         identifier: (user?.userID!)!,
-                        fullName: user?.profile?.name,
+                        fullName: user?.profile!.name,
                         email: user?.profile?.email,
                         socialIsWhat: "google"
                     )

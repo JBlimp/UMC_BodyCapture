@@ -45,10 +45,10 @@ extension HomeController {
         containerView.isUserInteractionEnabled = true
         containerView.addGestureRecognizer(profileClick)
         
-        let userName = self.currentUser?.fullName // 서버 통신해서 이름, 프로필 이미지가져오기
+        // 서버 통신해서 이름, 프로필 이미지 가져오기
         let userImage = UIImage(systemName: "person")
         
-        greetingLabel.text = "\(userName)님, 안녕하세요."
+        greetingLabel.text = (self.currentUser?.fullName)! + "님, 안녕하세요."
         greetingLabel.textAlignment = .left
         
         welcomeLabel.text = "Body Capture에 오신 것을 환영합니다!"
