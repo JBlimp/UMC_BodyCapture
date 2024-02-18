@@ -140,11 +140,7 @@ extension HomeController {
     
     
     @objc func ddayTapped() {
-        let myplanVC = MyPlanController()
-        //self.present(myplanVC, animated: true, completion: nil)
-        //myplanVC.modalPresentationStyle = .fullScreen
-        myplanVC.currentUser = currentUser
-        navigationController?.pushViewController(myplanVC, animated: true)
+        self.tabBarController?.selectedIndex = 3
     }
     
     //MARK: - 스토어 4개 카테고리

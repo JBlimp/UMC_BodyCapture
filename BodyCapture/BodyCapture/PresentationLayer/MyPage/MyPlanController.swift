@@ -32,7 +32,7 @@ class MyPlanController: UIViewController {
     
     let profileName: UILabel = {
         let text = UILabel()
-        text.font = UIFont.systemFont(ofSize: 18)
+        text.font = UIFont.boldSystemFont(ofSize: 18)
         return text
     }()
     
