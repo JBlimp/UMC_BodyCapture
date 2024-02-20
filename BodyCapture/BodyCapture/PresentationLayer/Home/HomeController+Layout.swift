@@ -61,12 +61,12 @@ extension HomeController {
         containerView.addSubview(greetingLabel)
         containerView.addSubview(welcomeLabel)
         
-        view.addSubview(containerView)
+        contentView.addSubview(containerView)
         
         NSLayoutConstraint.activate([
-            containerView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
-            containerView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
-            containerView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
+            containerView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
+            containerView.topAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.topAnchor, constant: 10),
+            containerView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
             
             containerView.heightAnchor.constraint(equalToConstant: 120),
             
@@ -121,12 +121,12 @@ extension HomeController {
         
         containerDdayView.addSubview(ddayLabel)
         containerDdayView.addSubview(directionLabel)
-        view.addSubview(containerDdayView)
+        contentView.addSubview(containerDdayView)
         
         NSLayoutConstraint.activate([
-            containerDdayView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
+            containerDdayView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
             containerDdayView.topAnchor.constraint(equalTo: containerView.bottomAnchor, constant: 10),
-            containerDdayView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
+            containerDdayView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
             containerDdayView.heightAnchor.constraint(equalToConstant: 120),
             
             ddayLabel.centerYAnchor.constraint(equalTo: containerDdayView.centerYAnchor),
@@ -162,13 +162,13 @@ extension HomeController {
         }
         
         containerStoreView.addSubview(buttonsStackView)
-        view.addSubview(containerStoreView)
+        contentView.addSubview(containerStoreView)
         containerStoreView.backgroundColor = ThemeColor.blue1
         
         NSLayoutConstraint.activate([
-            containerStoreView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
+            containerStoreView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
             containerStoreView.topAnchor.constraint(equalTo: text1.bottomAnchor),
-            containerStoreView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
+            containerStoreView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
             containerStoreView.heightAnchor.constraint(equalToConstant: 120),
             
             buttonsStackView.centerXAnchor.constraint(equalTo: containerStoreView.centerXAnchor),
@@ -177,13 +177,15 @@ extension HomeController {
     }
     //MARK: - "나의 상태
     func configureStatusUI() {
-        view.addSubview(containerStatusView)
+        contentView.addSubview(containerStatusView)
+        
         containerStatusView.backgroundColor = ThemeColor.blue1
         NSLayoutConstraint.activate([
-            containerStatusView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
+            containerStatusView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
             containerStatusView.topAnchor.constraint(equalTo: text2.bottomAnchor),
-            containerStatusView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
-            containerStatusView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -10)
+            containerStatusView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
+            containerStatusView.heightAnchor.constraint(equalToConstant: 500),
+            containerStatusView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -20)
             ])
     }
     

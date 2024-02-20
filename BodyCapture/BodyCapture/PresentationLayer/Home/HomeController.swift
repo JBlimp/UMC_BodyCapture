@@ -2,6 +2,9 @@ import UIKit
 
 class HomeController: UIViewController {
     //홈 컨트롤러 생성될때 User 정보 넘겨줘야함
+    var scrollView = UIScrollView()
+    var contentView = UIView()
+    
     var currentUser: User?
     // naviBar 컴포넌트 설정
     let customView = UIView()
@@ -88,27 +91,55 @@ class HomeController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         print(currentUser)
+        setupScrollView()
         configureNaviBarUI()
         configureProfileView()
         configureDdayView()
-        view.addSubview(text1)
+        contentView.addSubview(text1)
         
         NSLayoutConstraint.activate([
-            text1.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
+            text1.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
             text1.topAnchor.constraint(equalTo: containerDdayView.bottomAnchor)
         ])
         
         configureStoreUI()
-        view.addSubview(text2)
+        contentView.addSubview(text2)
         
         NSLayoutConstraint.activate([
             text2.topAnchor.constraint(equalTo: containerStoreView.bottomAnchor),
-            text2.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10)
+            text2.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10)
         ])
         configureStatusUI()
         
     }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        print("containerStatusView frame after layout: \(containerStatusView.frame)")
+    }
 
+    
+    func setupScrollView() {
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        contentView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(scrollView)
+        scrollView.addSubview(contentView)
+        
+        // 스크롤 뷰 제약조건 설정
+        NSLayoutConstraint.activate([
+            scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            
+            // ContentView 제약조건 설정
+            contentView.topAnchor.constraint(equalTo: scrollView.topAnchor),
+            contentView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
+            contentView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
+            contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
+            contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor)
+        ])
+    }
     
     
     //MARK: - Actions
