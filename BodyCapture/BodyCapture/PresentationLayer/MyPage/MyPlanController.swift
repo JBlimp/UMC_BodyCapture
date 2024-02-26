@@ -87,6 +87,21 @@ class MyPlanController: UIViewController {
         return button
     }()
     
+    let mygoalBox: UIView = {
+        let view = UIView()
+        view.layer.backgroundColor = UIColor(hex: "DEE9FF").cgColor
+        view.clipsToBounds = true
+        view.layer.cornerRadius = 10
+        return view
+    }()
+    
+    let mygoalText: UILabel = {
+        let label = UILabel()
+        label.text = "나의 목표"
+        label.font = UIFont.boldSystemFont(ofSize: 14)
+        return label
+    }()
+    
     let goalweight: UILabel = {
         let text = UILabel()
         text.font = UIFont.systemFont(ofSize: 14)
@@ -320,7 +335,7 @@ class MyPlanController: UIViewController {
     
     func setupLayouts() {
         let safeArea = view.safeAreaLayoutGuide
-        let views = [profileBox, profileImage, profileName, profileEditButton, profileHeight, profileWeight, profileBMI, profileBFP, profileDetailButton, goalweight, ddayview, ddaytext, dday, myReservationText, studioBox, studioImage, studioName, studioInfo, studioMoney, studioDate, makeupBox, makeupImage, makeupInfo, makeupName, makeupMoney, makeupDate, hairshopBox, hairshopInfo, hairshopImage, hairshopName, hairshopDate, hairshopMoney, studioDetailButton, makeupDetailButton, hairshopDetailButton]
+        let views = [profileBox, profileImage, profileName, profileEditButton, profileHeight, profileWeight, profileBMI, profileBFP, profileDetailButton, mygoalBox, mygoalText, goalweight, ddayview, ddaytext, dday, myReservationText, studioBox, studioImage, studioName, studioInfo, studioMoney, studioDate, makeupBox, makeupImage, makeupInfo, makeupName, makeupMoney, makeupDate, hairshopBox, hairshopInfo, hairshopImage, hairshopName, hairshopDate, hairshopMoney, studioDetailButton, makeupDetailButton, hairshopDetailButton]
         for view in views {
             view.translatesAutoresizingMaskIntoConstraints = false
             self.view.addSubview(view)
@@ -369,6 +384,15 @@ class MyPlanController: UIViewController {
             profileDetailButton.rightAnchor.constraint(equalTo: profileBox.rightAnchor, constant: -19),
             profileDetailButton.bottomAnchor.constraint(equalTo: profileBox.bottomAnchor, constant: -15),
             profileDetailButton.heightAnchor.constraint(equalToConstant: 14),
+            
+            mygoalText.leftAnchor.constraint(equalTo: safeArea.leftAnchor, constant: 21),
+            mygoalText.topAnchor.constraint(equalTo: profileImage.bottomAnchor, constant: 31),
+            mygoalText.heightAnchor.constraint(equalToConstant: 20),
+            
+            mygoalBox.leftAnchor.constraint(equalTo: safeArea.leftAnchor, constant: 21),
+            mygoalBox.topAnchor.constraint(equalTo: mygoalText.bottomAnchor, constant: 8),
+            mygoalBox.rightAnchor.constraint(equalTo: safeArea.rightAnchor, constant: -20),
+            mygoalBox.heightAnchor.constraint(equalToConstant: 80),
             
             myReservationText.topAnchor.constraint(equalTo: profileBox.bottomAnchor, constant: 148),
             myReservationText.leftAnchor.constraint(equalTo: profileBox.leftAnchor),
@@ -493,6 +517,7 @@ class MyPlanController: UIViewController {
     
     @objc func profileEditButtonTouchUpInside() {
         let editVC = EditProfileViewController()
+        editVC.currentUser = self.currentUser
         navigationController?.pushViewController(editVC, animated: true)
     }
     

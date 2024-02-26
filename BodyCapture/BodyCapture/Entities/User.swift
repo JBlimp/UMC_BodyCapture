@@ -10,5 +10,6 @@ struct User {
     var nickname: String?
     var birthday: String?
     var gender: String?
+    var phone: String?
     //var 동의내역
 }
