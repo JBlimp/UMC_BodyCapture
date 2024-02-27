@@ -17,12 +17,12 @@ class AppleAuthenticateUserUseCase {
             let userIdentifier = appleIDCredential.user
             let fullName = formatNameComponents(appleIDCredential.fullName)
             let email = appleIDCredential.email
-            let identityToken = convertDataToString(appleIDCredential.identityToken)
+            //let identityToken = convertDataToString(appleIDCredential.identityToken)
                 //jwt토큰
             
             UserDefaults.standard.set(userIdentifier, forKey: "AppleUserID")
             
-            let user = User(identifier: userIdentifier, fullName: fullName, email: email, token: identityToken)
+            let user = User(identifier: userIdentifier, fullName: fullName, email: email)
             
             navigateToNextScreen(with: user)
             sendJWTToBE(with: user)
@@ -54,7 +54,6 @@ class AppleAuthenticateUserUseCase {
             "userIdentifier": user.identifier,
             "fullName": user.fullName,
             "email": user.email,
-            "token": user.token
         ]
         
         // Alamofire를 사용하여 HTTP POST 요청 전송
