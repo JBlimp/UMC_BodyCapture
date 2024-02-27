@@ -150,6 +150,7 @@ class HomeController: UIViewController {
     
     @objc func profileTapped() {
         let editVC = EditProfileViewController()
+        editVC.currentUser = self.currentUser
         navigationController?.pushViewController(editVC, animated: true)
     }
 }
