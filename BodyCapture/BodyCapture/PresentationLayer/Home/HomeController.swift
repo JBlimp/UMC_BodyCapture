@@ -153,4 +153,10 @@ class HomeController: UIViewController {
         editVC.currentUser = self.currentUser
         navigationController?.pushViewController(editVC, animated: true)
     }
+    
+    @objc func statusTapped() {
+        let statusDetail = InbodyDetailController()
+        statusDetail.currentUser = self.currentUser
+        navigationController?.pushViewController(statusDetail, animated: true)
+    }
 }
