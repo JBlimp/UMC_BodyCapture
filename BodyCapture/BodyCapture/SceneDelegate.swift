@@ -56,7 +56,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         }
     }
 
-    //구현해야할 것! : 토큰 유효성 검사 함수
+    //구현해야할 것! : 토큰 유효성 검사 함수 :::: 백엔드에서 검증하면 Boolean 받아오는 걸로 다시 구현
     func isTokenValid(completion: @escaping (Bool) -> Void) {
         let socialIsWhat: String? = UserDefaults.standard.object(forKey: "socialIsWhat") as? String
         

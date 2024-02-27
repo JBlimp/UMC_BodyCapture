@@ -11,11 +11,11 @@ class AlamofireCompanyInfoRepository: CompanyInfoRepository {
     let titles = ["Studio", "Makeup", "Hairshop", "Package", "Heart"]
     
     let ex :[CompanyInfo] = [
-        CompanyInfo(name: "Company A", imageURL: nil, storeURL: URL(string: "https://www.naver.com"), price: "$100", rating: 4.5, district: "강남구"),
-        CompanyInfo(name: "Company B", imageURL: nil, storeURL: URL(string: "https://www.naver.com"), price: "$200", rating: 4.2, district: "서초구"),
-        CompanyInfo(name: "Company C", imageURL: nil, storeURL: URL(string: "https://www.naver.com"), price: "$150", rating: 4.8, district: "송파구"),
-        CompanyInfo(name: "Company D", imageURL: nil, storeURL: URL(string: "https://www.naver.com"), price: "$120", rating: 4.0, district: "용산구"),
-        CompanyInfo(name: "Company E", imageURL: nil, storeURL: URL(string: "https://www.naver.com"), price: "$120", rating: 4.0, district: "해운대구")
+        CompanyInfo(name: "Company A", imageURL: nil, storeURL: URL(string: "https://www.naver.com"), district: "강남구"),
+        CompanyInfo(name: "Company B", imageURL: nil, storeURL: URL(string: "https://www.naver.com"), district: "서초구"),
+        CompanyInfo(name: "Company C", imageURL: nil, storeURL: URL(string: "https://www.naver.com"), district: "송파구"),
+        CompanyInfo(name: "Company D", imageURL: nil, storeURL: URL(string: "https://www.naver.com"), district: "용산구"),
+        CompanyInfo(name: "Company E", imageURL: nil, storeURL: URL(string: "https://www.naver.com"), district: "해운대구")
     ]
 //MARK: - API명세!!!!
     func fetchCompanyInfos(categoryIndex: Int, completion: @escaping ([CompanyInfo]) -> Void) {
@@ -24,6 +24,7 @@ class AlamofireCompanyInfoRepository: CompanyInfoRepository {
         
         AF.request(url).responseDecodable(of: [CompanyInfo].self) { response in
             switch response.result {
+                
             case .success(let companyInfos):
                 completion(companyInfos)
                 

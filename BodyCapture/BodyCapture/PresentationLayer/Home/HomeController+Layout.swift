@@ -177,6 +177,9 @@ extension HomeController {
     }
     //MARK: - "나의 상태
     func configureStatusUI() {
+        let statusClick = UITapGestureRecognizer(target: self, action: #selector(statusTapped))
+        containerStatusView.addGestureRecognizer(statusClick)
+        
         contentView.addSubview(containerStatusView)
         
         containerStatusView.backgroundColor = ThemeColor.blue1

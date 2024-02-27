@@ -100,6 +100,7 @@ class StoreController: UIViewController {
     
     func loadCompanyInfos(forCategoryIndex index: Int) {
         companyInfoRepository.fetchCompanyInfos(categoryIndex: index) { [weak self] newCompanyInfos in
+            
             DispatchQueue.main.async {
                 guard let self = self else {return}
                 

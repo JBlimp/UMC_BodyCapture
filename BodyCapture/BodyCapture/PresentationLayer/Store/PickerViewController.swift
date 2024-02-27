@@ -81,19 +81,19 @@ class PickerViewController: UIViewController {
         cityInfo = [
             CityInfo(cityName: "서울", districts: [
                 DistrictInfo(districtName: "강남구", stores: [
-                    CompanyInfo(name: "Store A", imageURL: nil, storeURL: nil, price: "₩₩", rating: 4.5, district: "강남구"),
-                    CompanyInfo(name: "Store B", imageURL: nil, storeURL: nil, price: "₩₩₩", rating: 4.2, district: "강남구")
+                    CompanyInfo(name: "Store A", imageURL: nil, storeURL: nil,  district: "강남구"),
+                    CompanyInfo(name: "Store B", imageURL: nil, storeURL: nil,  district: "강남구")
                 ]),
                 DistrictInfo(districtName: "서초구", stores: [
-                    CompanyInfo(name: "Store C", imageURL: nil, storeURL: nil, price: "₩", rating: 4.0, district: "서초구")
+                    CompanyInfo(name: "Store C", imageURL: nil, storeURL: nil,  district: "서초구")
                 ])
             ]),
             CityInfo(cityName: "부산", districts: [
                 DistrictInfo(districtName: "해운대구", stores: [
-                    CompanyInfo(name: "Store D", imageURL: nil, storeURL: nil, price: "₩₩₩₩", rating: 4.8, district: "해운대구")
+                    CompanyInfo(name: "Store D", imageURL: nil, storeURL: nil,  district: "해운대구")
                 ]),
                 DistrictInfo(districtName: "수영구", stores: [
-                    CompanyInfo(name: "Store E", imageURL: nil, storeURL: nil, price: "₩₩₩", rating: 4.3, district: "수영구")
+                    CompanyInfo(name: "Store E", imageURL: nil, storeURL: nil,  district: "수영구")
                 ])
             ])
         ]
@@ -117,15 +117,16 @@ class PickerViewController: UIViewController {
 //        }
 //    }
 //}
+//category(bp, ms) -> city -> district
 
-        func fetchCompanyInfosForCity(cityName: String) -> AnyPublisher<[CompanyInfo], AFError> {
-            let url = "https://yourserver.com/api/companyInfos?city=\(cityName)"
-            return AF.request(url)
-                .publishDecodable(type: [CompanyInfo].self)
-                .value() // `value`는 성공 응답만을 추출
-                .receive(on: DispatchQueue.main) // 메인 스레드에서 받기
-                .eraseToAnyPublisher() // 타입을 숨김 (AnyPublisher로 반환)
-        }
+func fetchCompanyInfosForCity(cityName: String) -> AnyPublisher<[CompanyInfo], AFError> {
+    let url = "https://yourserver.com/api/companyInfos?city=\(cityName)"
+    return AF.request(url)
+        .publishDecodable(type: [CompanyInfo].self)
+        .value() // `value`는 성공 응답만을 추출
+        .receive(on: DispatchQueue.main) // 메인 스레드에서 받기
+        .eraseToAnyPublisher() // 타입을 숨김 (AnyPublisher로 반환)
+}
 
 
 //MARK: - delegate 2종류!!

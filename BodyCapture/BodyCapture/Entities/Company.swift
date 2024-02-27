@@ -2,14 +2,13 @@ import UIKit
 
 struct CompanyInfo: Decodable {
     let name: String
-    let imageURL: URL? 
-    let storeURL: URL?
-    let price: String
-    let rating: Double
+    let imageURL: URL?
+    let storeURL: URL? // 네이버 지도 상 링크로, 주소, 평점 필요 없음
+    
     let district: String
     // 전화 번호, 상세 주소 처리?
     private enum CodingKeys: String, CodingKey {
-        case name, imageURL = "photoPath", storeURL, price, rating, district
+        case name, imageURL = "photoPath", storeURL,district
     }
 }
 
