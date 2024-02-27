@@ -124,6 +124,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 switch credentialState {
                 case .authorized:
                     // User is logged in
+                    self.currentUser = User(
+                        fullName: "이준석"
+                    )
                     completion(true)
                 case .revoked, .notFound:
                     // User is not logged in

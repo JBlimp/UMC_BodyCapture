@@ -281,7 +281,7 @@ class EditProfileViewController: UIViewController {
         
         //현재 사용자 정보와 UserDefaults에 저장된 로그인 정보가 다를 경우 UserDefaults 초기화후 앱 강제종료
         if socialIsWhat == UserDefaults.standard.string(forKey: "socialIsWhat") {
-            forceRestart()
+            //forceRestart()
         }
         
         if socialIsWhat == "kakao" {
@@ -290,21 +290,18 @@ class EditProfileViewController: UIViewController {
                     print(error)
                 }
                 else {
-                    print("logout() success.")
-                    
-                    // 최초 화면으로
-                    let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                    let loginNavController = LoginViewController()
-                    UIApplication.shared.keyWindow?.rootViewController = loginNavController
+                    let popup = UIAlertController(title: "로그아웃", message: "초기 화면으로 이동합니다.", preferredStyle: .alert)
+                    let action = UIAlertAction(title: "확인", style: .default, handler: self.logoutHandler(_: ))
+                    popup.addAction(action)
+                    self.present(popup, animated: true)
                 }
             }
         } else if socialIsWhat == "google" {
             GIDSignIn.sharedInstance.signOut()
-            //최초 화면으로
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let loginNavController = LoginViewController()
-            UIApplication.shared.keyWindow?.rootViewController = loginNavController
-            
+            let popup = UIAlertController(title: "로그아웃", message: "초기 화면으로 이동합니다.", preferredStyle: .alert)
+            let action = UIAlertAction(title: "확인", style: .default, handler: self.logoutHandler(_: ))
+            popup.addAction(action)
+            self.present(popup, animated: true)
         } else if socialIsWhat == "apple" {
             
         } else {
@@ -325,6 +322,16 @@ class EditProfileViewController: UIViewController {
         }
         
         exit(0)
+    }
+    
+    func logoutHandler(_ action: UIAlertAction) {
+        for key in UserDefaults.standard.dictionaryRepresentation().keys {
+            UserDefaults.standard.removeObject(forKey: key.description)
+        }
+        // 최초 화면으로
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let loginNavController = LoginViewController()
+        UIApplication.shared.keyWindow?.rootViewController = loginNavController
     }
     
     func sendEditProfileToServer() {

@@ -23,7 +23,6 @@ class AppleAuthenticateUserUseCase {
             UserDefaults.standard.set(userIdentifier, forKey: "AppleUserID")
             
             let user = User(identifier: userIdentifier, fullName: fullName, email: email)
-            
             navigateToNextScreen(with: user)
             sendJWTToBE(with: user)
         }
