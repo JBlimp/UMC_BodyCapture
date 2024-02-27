@@ -163,6 +163,7 @@ class EditProfileViewController: UIViewController {
     }
     
     func configureView() {
+        self.currentUser?.socialIsWhat = "google"
         self.currentUser?.fullName = "이준석"
         self.currentUser?.birthday = "2000-06-07"
         self.currentUser?.gender = "남성"
@@ -292,11 +293,18 @@ class EditProfileViewController: UIViewController {
                     print("logout() success.")
                     
                     // 최초 화면으로
+                    let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                    let loginNavController = LoginViewController()
+                    UIApplication.shared.keyWindow?.rootViewController = loginNavController
                 }
             }
         } else if socialIsWhat == "google" {
             GIDSignIn.sharedInstance.signOut()
             //최초 화면으로
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let loginNavController = LoginViewController()
+            UIApplication.shared.keyWindow?.rootViewController = loginNavController
+            
         } else if socialIsWhat == "apple" {
             
         } else {
